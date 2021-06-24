@@ -29,7 +29,9 @@ export const NavBar: React.FC = () => {
       </StyledAppBar>
       <ButtonGroup variant="contained" aria-label="contained primary button group">
         {languages.map(({ name, value }) => (
-          <StyledButton onClick={() => i18n.changeLanguage(value)}>{name}</StyledButton>
+          <StyledButton key={name + value} onClick={() => i18n.changeLanguage(value)}>
+            {name}
+          </StyledButton>
         ))}
       </ButtonGroup>
     </StyledContainer>
