@@ -1,0 +1,8 @@
+{
+  "title": "Фильмы",
+  "navBar": {
+    "dashboard": "Списки",
+    "movies": "Фильмы",
+    "randomMovie": "Случайный фильм"
+  }
+}
