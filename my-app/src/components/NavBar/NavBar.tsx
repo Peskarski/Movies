@@ -4,18 +4,33 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Tabs from '@material-ui/core/Tabs';
 import i18n from 'i18next';
 import { useTranslation } from 'react-i18next';
+<<<<<<< HEAD
 import { Language } from '../../i18n/config';
+=======
+import { useHistory } from 'react-router-dom';
+
+type language = {
+  name: string;
+  value: string;
+};
+>>>>>>> set up react router
 
 const navTabs: string[] = ['navBar.dashboard', 'navBar.movies', 'navBar.randomMovie'];
 
 export const NavBar: React.FC = () => {
   const { t } = useTranslation();
+  const history = useHistory();
+
   return (
     <StyledContainer>
       <StyledAppBar position="static">
         <Tabs aria-label="simple tabs example" centered variant="fullWidth">
           {navTabs.map((tab) => (
-            <StyledTab label={t(tab)} key={String(Math.random())} />
+            <StyledTab
+              label={t(tab)}
+              key={String(Math.random())}
+              onClick={() => history.push(`/${t(tab, { lng: 'en' })}`)}
+            />
           ))}
         </Tabs>
       </StyledAppBar>
