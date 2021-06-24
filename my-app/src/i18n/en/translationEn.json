@@ -4,5 +4,10 @@
     "dashboard": "Dashboard",
     "movies": "Movies",
     "randomMovie": "Random movie"
+  },
+  "dashboard": {
+    "nowPlaying": "Now playing",
+    "upcoming": "Upcoming",
+    "popular": "Popular"
   }
 }

@@ -5,7 +5,7 @@ import { Container } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 
 export const StyledAppBar = styled(AppBar)({
-  width: '70%',
+  width: '80%',
   margin: 'auto',
   background: 'rgb(45, 140, 181)',
 });
@@ -25,7 +25,6 @@ export const StyledButton = styled(Button)({
 });
 
 export const StyledContainer = styled(Container)({
-  width: '90%',
   display: 'flex',
   justifyContent: 'space-between',
 });

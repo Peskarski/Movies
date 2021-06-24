@@ -20,9 +20,15 @@ export const NavBar: React.FC = () => {
         </Tabs>
       </StyledAppBar>
       <ButtonGroup variant="contained" aria-label="contained primary button group">
+<<<<<<< HEAD
         {Object.values(Language).map((lng) => (
           <StyledButton key={String(Math.random())} onClick={() => i18n.changeLanguage(lng)}>
             {lng}
+=======
+        {languages.map(({ name, value }) => (
+          <StyledButton key={name + value} onClick={() => i18n.changeLanguage(value)}>
+            {name}
+>>>>>>> added dashboard component, installed redux, router
           </StyledButton>
         ))}
       </ButtonGroup>

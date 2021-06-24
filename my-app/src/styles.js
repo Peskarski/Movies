@@ -6,7 +6,7 @@ export const StyledContainer = styled(Container)({
   color: 'black',
   fontWeight: 'bold',
   textAlign: 'center',
-  width: '80%',
+  width: '90%',
   height: '800px',
   fontFamily: 'sans-serif',
 });
