@@ -1,39 +1,43 @@
-import { GET_NOW_PLAYING_SUCCESS, GET_NOW_PLAYING_REQUESTED, GET_NOW_PLAYING_ERROR } from './actions';
+import { GET_MOVIES_SUCCESS, GET_MOVIES_REQUESTED, GET_MOVIES_ERROR } from './actions';
+
+const moviesList = {
+  movies: [],
+  status: null,
+  error: null,
+};
 
 export const initialListsState = {
-  nowPlaying: {
-    movies: [],
-    status: null,
-    error: null,
-  },
+  nowPlaying: moviesList,
+  upcoming: moviesList,
+  popular: moviesList,
 };
 
 export const lists = (state = initialListsState, action: any) => {
   switch (action.type) {
-    case GET_NOW_PLAYING_REQUESTED:
+    case GET_MOVIES_REQUESTED:
       return {
         ...state,
-        nowPlaying: {
+        [action.name]: {
           movies: [],
           status: 'requested',
           error: null,
         },
       };
 
-    case GET_NOW_PLAYING_SUCCESS:
+    case GET_MOVIES_SUCCESS:
       return {
         ...state,
-        nowPlaying: {
+        [action.name]: {
           movies: action.payload,
           status: 'success',
           error: null,
         },
       };
 
-    case GET_NOW_PLAYING_ERROR:
+    case GET_MOVIES_ERROR:
       return {
         ...state,
-        nowPlaying: {
+        [action.name]: {
           movies: [],
           status: 'error',
           error: action.payload,

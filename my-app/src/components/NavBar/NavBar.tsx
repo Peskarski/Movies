@@ -21,7 +21,7 @@ export const NavBar: React.FC = () => {
             <StyledTab
               label={t(tab)}
               key={String(Math.random())}
-              onClick={() => history.push(`/${t(tab, { lng: 'en' })}`)}
+              onClick={() => history.push(`/${t(tab, { lng: 'en' })}/`)}
             />
           ))}
         </Tabs>
