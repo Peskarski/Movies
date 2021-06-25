@@ -8,4 +8,5 @@ export const StyledContainer = styled(Container)({
   textAlign: 'center',
   width: '80%',
   height: '800px',
+  fontFamily: 'sans-serif',
 });
