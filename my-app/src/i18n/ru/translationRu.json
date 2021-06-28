@@ -10,7 +10,10 @@
     "upcoming": "Ожидаемые",
     "popular": "Популярные"
   },
-  "genres": {
-    "genre": "Жанр"
+  "filters": {
+    "genre": "Жанр",
+    "startDate": "От",
+    "endDate": "До",
+    "apply": "Применить"
   }
 }
