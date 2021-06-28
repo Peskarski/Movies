@@ -1,4 +1,4 @@
-import { GET_MOVIES_SUCCESS, GET_MOVIES_REQUESTED, GET_MOVIES_ERROR } from './actions';
+import { GET_MOVIES_SUCCESS, GET_MOVIES_REQUESTED, GET_MOVIES_ERROR, SET_INITIAL_MOVIES_STATE } from './actions';
 
 const moviesList = {
   movies: [],
@@ -42,6 +42,11 @@ export const lists = (state = initialListsState, action: any) => {
           status: 'error',
           error: action.payload,
         },
+      };
+
+    case SET_INITIAL_MOVIES_STATE:
+      return {
+        ...initialListsState,
       };
 
     default:

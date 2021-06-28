@@ -1,6 +1,7 @@
 export const GET_MOVIES_SUCCESS = 'ADD_MOVIES_SUCCESS';
 export const GET_MOVIES_ERROR = 'ADD_MOVIES_ERROR';
 export const GET_MOVIES_REQUESTED = 'ADD_MOVIES_REQUESTED';
+export const SET_INITIAL_MOVIES_STATE = 'SET_INITIAL_MOVIES_STATE';
 
 export const NOW_PLAYING = 'nowPlaying';
 export const UPCOMING = 'upcoming';
@@ -75,5 +76,11 @@ export const getPopularRequested = (url: string) => {
     type: GET_MOVIES_REQUESTED,
     name: POPULAR,
     payload: url,
+  };
+};
+
+export const setInitialMoviesState = () => {
+  return {
+    type: SET_INITIAL_MOVIES_STATE,
   };
 };
