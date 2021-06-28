@@ -9,4 +9,5 @@ export const StyledContainer = styled(Container)({
   width: '90%',
   height: '800px',
   fontFamily: 'sans-serif',
+  minWidth: '1000px',
 });

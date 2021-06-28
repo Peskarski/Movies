@@ -9,5 +9,8 @@
     "nowPlaying": "Now playing",
     "upcoming": "Upcoming",
     "popular": "Popular"
+  },
+  "genres": {
+    "genre": "Genre"
   }
 }
