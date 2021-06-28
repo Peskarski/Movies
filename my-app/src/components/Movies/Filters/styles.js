@@ -9,7 +9,7 @@ export const StyledSelect = styled(Select)({
 });
 
 export const StyledContainer = styled(Container)({
-  width: '60%',
+  width: '75%',
   display: 'flex',
   justifyContent: 'space-around',
   marginTop: '8px',

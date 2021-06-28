@@ -14,8 +14,4 @@ export const POPULAR_REQUEST_WORD = 'popular';
 
 //genres
 export const getGenresUrl = (lng: string) =>
-  `https://api.themoviedb.org/3/genre/movie/list?api_key=bb2b538ec7dc87a9a9ecaa9065c3baff&language=${lng}`;
-
-//movies
-export const getMoviesUrl = (lng: string, genre: string) =>
-  `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=${lng}&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=${genre}&with_watch_monetization_types=flatrate`;
+  `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=${lng}`;
