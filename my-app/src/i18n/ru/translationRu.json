@@ -9,5 +9,8 @@
     "nowPlaying": "В прокате",
     "upcoming": "Ожидаемые",
     "popular": "Популярные"
+  },
+  "genres": {
+    "genre": "Жанр"
   }
 }
