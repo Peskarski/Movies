@@ -29,11 +29,13 @@ const actionsByNames = {
   },
 };
 
+const maxListLength = 5;
+
 export function* getMoviesSaga({ payload, name }: AnyAction): any {
   try {
     const data = yield fetch(payload);
     const result = yield data.json();
-    yield put(actionsByNames[name as keyof typeof actionsByNames].success(result.results.slice(0, 5)));
+    yield put(actionsByNames[name as keyof typeof actionsByNames].success(result.results.slice(0, maxListLength)));
   } catch (error) {
     put(actionsByNames[name as keyof typeof actionsByNames].error(error));
   }

@@ -12,6 +12,12 @@ export const initialListsState = {
   popular: moviesList,
 };
 
+enum Status {
+  Requested = 'requested',
+  Success = 'success',
+  Error = 'error',
+}
+
 export const lists = (state = initialListsState, action: any) => {
   switch (action.type) {
     case GET_MOVIES_REQUESTED:
@@ -19,7 +25,7 @@ export const lists = (state = initialListsState, action: any) => {
         ...state,
         [action.name]: {
           movies: [],
-          status: 'requested',
+          status: Status.Requested,
           error: null,
         },
       };
@@ -29,7 +35,7 @@ export const lists = (state = initialListsState, action: any) => {
         ...state,
         [action.name]: {
           movies: action.payload,
-          status: 'success',
+          status: Status.Success,
           error: null,
         },
       };
@@ -39,7 +45,7 @@ export const lists = (state = initialListsState, action: any) => {
         ...state,
         [action.name]: {
           movies: [],
-          status: 'error',
+          status: Status.Error,
           error: action.payload,
         },
       };

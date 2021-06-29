@@ -12,19 +12,20 @@ import {
 } from '../store';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import { getListUrl, NOW_PLAYING_REQUEST_WORD, UPCOMING_REQUEST_WORD, POPULAR_REQUEST_WORD } from '../../../API';
+import { getListUrl, ListNames } from '../../../API';
 import i18n from 'i18next';
+import { ListItemData } from '../';
 
 const listsStoreData = {
-  [NOW_PLAYING_REQUEST_WORD]: {
+  [ListNames.NOW_PLAYING_REQUEST_PATH]: {
     selector: nowPlaying,
     action: getNowPlayingRequested,
   },
-  [UPCOMING_REQUEST_WORD]: {
+  [ListNames.UPCOMING_REQUEST_PATH]: {
     selector: upcoming,
     action: getUpcomingRequested,
   },
-  [POPULAR_REQUEST_WORD]: {
+  [ListNames.POPULAR_REQUEST_PATH]: {
     selector: popular,
     action: getPopularRequested,
   },
@@ -32,26 +33,25 @@ const listsStoreData = {
 
 export const MoviesList: React.FC = () => {
   const dispatch = useDispatch();
-  const { list } = useParams<{ list: string }>();
-  const movies = useSelector(listsStoreData[list as keyof typeof listsStoreData].selector);
-  const lng = i18n.language;
-  const path = getListUrl(lng, list);
+  const { list } = useParams<{ list: keyof typeof listsStoreData }>();
+  const movies = useSelector(listsStoreData[list].selector);
+  const language = i18n.language;
+  const path = getListUrl(language, list);
 
   useEffect(() => {
     if (movies.length === 0) {
-      dispatch(listsStoreData[list as keyof typeof listsStoreData].action(path));
+      dispatch(listsStoreData[list].action(path));
     }
-  }, [list]);
+  }, [list, dispatch, movies.length, path]);
 
   useEffect(() => {
     dispatch(setInitialMoviesState());
-    dispatch(listsStoreData[list as keyof typeof listsStoreData].action(path));
-  }, [lng]);
+  }, [language, dispatch]);
 
   return (
     <List>
-      {movies.map(({ title }: any) => (
-        <ListItem key={String(Math.random())}>{title}</ListItem>
+      {movies.map(({ title, id }: ListItemData) => (
+        <ListItem key={id}>{title}</ListItem>
       ))}
     </List>
   );
