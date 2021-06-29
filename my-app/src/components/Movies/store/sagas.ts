@@ -7,6 +7,7 @@ import {
   getFilteredMoviesError,
   getFilteredMoviesSuccess,
   GET_FILTERED_MOVIES_REQUESTED,
+  getTotalPages,
 } from './actions';
 
 export function* getGenresSaga({ payload }: AnyAction): any {
@@ -28,6 +29,7 @@ export function* getFilteredMoviesSaga({ payload }: AnyAction): any {
     const data = yield fetch(payload);
     const result = yield data.json();
     yield put(getFilteredMoviesSuccess(result.results));
+    yield put(getTotalPages(result.total_pages));
   } catch (error) {
     put(getFilteredMoviesError(error));
   }

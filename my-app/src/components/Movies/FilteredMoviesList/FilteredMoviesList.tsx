@@ -10,8 +10,8 @@ import { FilteredMoviesListProps } from '../';
 export const FilteredMoviesList: React.FC<FilteredMoviesListProps> = ({ genre, startDate, endDate }) => {
   const dispatch = useDispatch();
   const movies = useSelector(filteredMovies);
-  const lng = i18n.language;
-  const path = getMoviesUrl(lng, genre, startDate, endDate);
+  const language = i18n.language;
+  const path = getMoviesUrl(language, genre, startDate, endDate);
 
   useEffect(() => {
     dispatch(getFilteredMoviesRequested(path));

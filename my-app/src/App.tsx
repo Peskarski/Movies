@@ -13,7 +13,9 @@ const App = () => {
     <Router>
       <StyledContainer maxWidth={false}>
         <h1>{t('title')}</h1>
-        <NavBar />
+        <Switch>
+          <Route path="/" component={NavBar} />
+        </Switch>
         <Switch>
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/movies" component={Filters} />

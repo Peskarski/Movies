@@ -9,7 +9,7 @@ import { getGenresRequested, genres } from '../store';
 import { useTranslation } from 'react-i18next';
 import { FilteredMoviesList, FilterItemData } from '../';
 
-const DEFAULT_GENRE_VALUE = '';
+const DEFAULT_FILTERS_VALUE = '';
 
 export const Filters: React.FC = () => {
   const language = i18n.language;
@@ -18,9 +18,9 @@ export const Filters: React.FC = () => {
   const { t } = useTranslation();
   const genresList = useSelector(genres);
 
-  const [genre, setGenre] = useState(DEFAULT_GENRE_VALUE);
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [genre, setGenre] = useState(DEFAULT_FILTERS_VALUE);
+  const [startDate, setStartDate] = useState(DEFAULT_FILTERS_VALUE);
+  const [endDate, setEndDate] = useState(DEFAULT_FILTERS_VALUE);
   const [toApplyFilter, setToApplyFilter] = useState(false);
 
   const handleGenreChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -29,12 +29,12 @@ export const Filters: React.FC = () => {
     setToApplyFilter(false);
   };
 
-  const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleStartDateChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setStartDate(e.target.value);
     setToApplyFilter(false);
   };
 
-  const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleEndDateChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setEndDate(e.target.value);
     setToApplyFilter(false);
   };

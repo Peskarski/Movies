@@ -1,9 +1,10 @@
-export const GET_GENRES_SUCCESS = 'ADD_GENRES_SUCCESS';
-export const GET_GENRES_ERROR = 'ADD_GENRES_ERROR';
-export const GET_GENRES_REQUESTED = 'ADD_GENRES_REQUESTED';
-export const GET_FILTERED_MOVIES_SUCCESS = 'ADD_FILTERED_MOVIES_SUCCESS';
-export const GET_FILTERED_MOVIES_ERROR = 'ADD_FILTERED_MOVIES_ERROR';
-export const GET_FILTERED_MOVIES_REQUESTED = 'ADD_FILTERED_MOVIES_REQUESTED';
+export const GET_GENRES_SUCCESS = 'GET_GENRES_SUCCESS';
+export const GET_GENRES_ERROR = 'GET_GENRES_ERROR';
+export const GET_GENRES_REQUESTED = 'GET_GENRES_REQUESTED';
+export const GET_FILTERED_MOVIES_SUCCESS = 'GET_FILTERED_MOVIES_SUCCESS';
+export const GET_FILTERED_MOVIES_ERROR = 'GET_FILTERED_MOVIES_ERROR';
+export const GET_FILTERED_MOVIES_REQUESTED = 'GET_FILTERED_MOVIES_REQUESTED';
+export const GET_TOTAL_PAGES = 'GET_TOTAL_PAGES';
 
 export const getGenresSuccess = (genres: []) => {
   return {
@@ -44,5 +45,12 @@ export const getFilteredMoviesRequested = (url: string) => {
   return {
     type: GET_FILTERED_MOVIES_REQUESTED,
     payload: url,
+  };
+};
+
+export const getTotalPages = (totalPages: Number) => {
+  return {
+    type: GET_TOTAL_PAGES,
+    payload: totalPages,
   };
 };

@@ -5,6 +5,7 @@ import {
   GET_FILTERED_MOVIES_REQUESTED,
   GET_FILTERED_MOVIES_ERROR,
   GET_FILTERED_MOVIES_SUCCESS,
+  GET_TOTAL_PAGES,
 } from './actions';
 
 export const initialMoviesState = {
@@ -17,8 +18,16 @@ export const initialMoviesState = {
     movies: [],
     status: null,
     error: null,
+    totalPages: 0,
   },
+  totalPages: 0,
 };
+
+enum Status {
+  Requested = 'requested',
+  Success = 'success',
+  Error = 'error',
+}
 
 export const movies = (state = initialMoviesState, action: any) => {
   switch (action.type) {
@@ -27,7 +36,7 @@ export const movies = (state = initialMoviesState, action: any) => {
         ...state,
         genres: {
           genresList: [],
-          status: 'requested',
+          status: Status.Requested,
           error: null,
         },
       };
@@ -37,7 +46,7 @@ export const movies = (state = initialMoviesState, action: any) => {
         ...state,
         genres: {
           genresList: action.payload,
-          status: 'success',
+          status: Status.Success,
           error: null,
         },
       };
@@ -47,7 +56,7 @@ export const movies = (state = initialMoviesState, action: any) => {
         ...state,
         genres: {
           genresList: [],
-          status: 'error',
+          status: Status.Error,
           error: action.payload,
         },
       };
@@ -57,7 +66,7 @@ export const movies = (state = initialMoviesState, action: any) => {
         ...state,
         filteredMovies: {
           movies: [],
-          status: 'requested',
+          status: Status.Requested,
           error: null,
         },
       };
@@ -67,7 +76,7 @@ export const movies = (state = initialMoviesState, action: any) => {
         ...state,
         filteredMovies: {
           movies: action.payload,
-          status: 'success',
+          status: Status.Success,
           error: null,
         },
       };
@@ -77,9 +86,15 @@ export const movies = (state = initialMoviesState, action: any) => {
         ...state,
         filteredMovies: {
           movies: [],
-          status: 'error',
+          status: Status.Error,
           error: action.payload,
         },
+      };
+
+    case GET_TOTAL_PAGES:
+      return {
+        ...state,
+        totalPages: action.payload,
       };
 
     default:
