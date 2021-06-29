@@ -7,16 +7,18 @@ import { getGenresUrl } from '../../../API';
 import i18n from 'i18next';
 import { getGenresRequested, genres } from '../store';
 import { useTranslation } from 'react-i18next';
-import { FilteredMoviesList } from '../../Movies/FilteredMoviesList/FilteredMoviesList';
+import { FilteredMoviesList, FilterItemData } from '../';
+
+const DEFAULT_GENRE_VALUE = '';
 
 export const Filters: React.FC = () => {
-  const lng = i18n.language;
-  const path = getGenresUrl(lng);
+  const language = i18n.language;
+  const path = getGenresUrl(language);
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const genresList = useSelector(genres);
 
-  const [genre, setGenre] = useState('');
+  const [genre, setGenre] = useState(DEFAULT_GENRE_VALUE);
   const [toApplyFilter, setToApplyFilter] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -27,7 +29,7 @@ export const Filters: React.FC = () => {
 
   useEffect(() => {
     dispatch(getGenresRequested(path));
-  }, [lng]);
+  }, [dispatch, path]);
 
   return (
     <div>
@@ -36,11 +38,10 @@ export const Filters: React.FC = () => {
           <InputLabel id="demo-simple-select-label">{t('filters.genre')}</InputLabel>
           <StyledSelect
             labelId="demo-simple-select-label"
-            id="demo-simple-select"
             value={genre}
             onChange={(e) => handleChange(e as React.ChangeEvent<HTMLSelectElement>)}
           >
-            {genresList.map(({ name, id }: any) => (
+            {genresList.map(({ name, id }: FilterItemData) => (
               <MenuItem key={id} value={id}>
                 {name}
               </MenuItem>
@@ -48,7 +49,6 @@ export const Filters: React.FC = () => {
           </StyledSelect>
         </FormControl>
         <TextField
-          id="date"
           label={t('filters.startDate')}
           type="date"
           InputLabelProps={{
@@ -56,7 +56,6 @@ export const Filters: React.FC = () => {
           }}
         />
         <TextField
-          id="date"
           label={t('filters.endDate')}
           type="date"
           InputLabelProps={{
