@@ -5,4 +5,6 @@ export type FilterItemData = {
 
 export type FilteredMoviesListProps = {
   genre: string;
+  startDate: string;
+  endDate: string;
 };

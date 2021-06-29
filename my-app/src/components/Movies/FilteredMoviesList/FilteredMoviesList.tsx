@@ -7,11 +7,11 @@ import { getFilteredMoviesRequested, filteredMovies } from '../store';
 import { getMoviesUrl } from '../../../API';
 import { FilteredMoviesListProps } from '../';
 
-export const FilteredMoviesList: React.FC<FilteredMoviesListProps> = ({ genre }) => {
+export const FilteredMoviesList: React.FC<FilteredMoviesListProps> = ({ genre, startDate, endDate }) => {
   const dispatch = useDispatch();
   const movies = useSelector(filteredMovies);
   const lng = i18n.language;
-  const path = getMoviesUrl(lng, genre);
+  const path = getMoviesUrl(lng, genre, startDate, endDate);
 
   useEffect(() => {
     dispatch(getFilteredMoviesRequested(path));

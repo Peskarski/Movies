@@ -1,5 +1,5 @@
 //lists
-export const getListUrl = (language: string, list: string): string =>
+export const getListUrl = (language: string, list: ListNames): string =>
   `https://api.themoviedb.org/3/movie/${list}?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&page=1`;
 
 export enum ListNames {
@@ -8,14 +8,10 @@ export enum ListNames {
   POPULAR_REQUEST_PATH = 'popular',
 }
 
-export const NOW_PLAYING_REQUEST_WORD = 'now_playing';
-export const UPCOMING_REQUEST_WORD = 'upcoming';
-export const POPULAR_REQUEST_WORD = 'popular';
-
 //genres
-export const getGenresUrl = (lng: string) =>
-  `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=${lng}`;
+export const getGenresUrl = (language: string): string =>
+  `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=${language}`;
 
 //movies
-export const getMoviesUrl = (lng: string, genre: string) =>
-  `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=${lng}&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=${genre}&with_watch_monetization_types=flatrate`;
+export const getMoviesUrl = (language: string, genre: string, startDate: string, endDate: string): string =>
+  `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=${genre}&primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}&with_watch_monetization_types=flatrate`;

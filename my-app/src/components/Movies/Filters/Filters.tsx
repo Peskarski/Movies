@@ -19,11 +19,23 @@ export const Filters: React.FC = () => {
   const genresList = useSelector(genres);
 
   const [genre, setGenre] = useState(DEFAULT_GENRE_VALUE);
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
   const [toApplyFilter, setToApplyFilter] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleGenreChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const target = e.target as HTMLSelectElement;
     setGenre(target.value);
+    setToApplyFilter(false);
+  };
+
+  const handleStartDateChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setStartDate(e.target.value);
+    setToApplyFilter(false);
+  };
+
+  const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setEndDate(e.target.value);
     setToApplyFilter(false);
   };
 
@@ -39,7 +51,7 @@ export const Filters: React.FC = () => {
           <StyledSelect
             labelId="demo-simple-select-label"
             value={genre}
-            onChange={(e) => handleChange(e as React.ChangeEvent<HTMLSelectElement>)}
+            onChange={(e) => handleGenreChange(e as React.ChangeEvent<HTMLSelectElement>)}
           >
             {genresList.map(({ name, id }: FilterItemData) => (
               <MenuItem key={id} value={id}>
@@ -54,6 +66,8 @@ export const Filters: React.FC = () => {
           InputLabelProps={{
             shrink: true,
           }}
+          onChange={handleStartDateChange}
+          value={startDate}
         />
         <TextField
           label={t('filters.endDate')}
@@ -61,10 +75,12 @@ export const Filters: React.FC = () => {
           InputLabelProps={{
             shrink: true,
           }}
+          onChange={handleEndDateChange}
+          value={endDate}
         />
         <StyledButton onClick={() => setToApplyFilter(true)}>{t('filters.apply')}</StyledButton>
       </StyledContainer>
-      {toApplyFilter && <FilteredMoviesList genre={genre} />}
+      {toApplyFilter && <FilteredMoviesList genre={genre} startDate={startDate} endDate={endDate} />}
     </div>
   );
 };
