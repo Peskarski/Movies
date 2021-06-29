@@ -5,12 +5,9 @@ import ListItem from '@material-ui/core/ListItem';
 import i18n from 'i18next';
 import { getFilteredMoviesRequested, filteredMovies } from '../store';
 import { getMoviesUrl } from '../../../API';
+import { FilteredMoviesListProps } from '../';
 
-type Props = {
-  genre: string;
-};
-
-export const FilteredMoviesList: React.FC<Props> = ({ genre }) => {
+export const FilteredMoviesList: React.FC<FilteredMoviesListProps> = ({ genre }) => {
   const dispatch = useDispatch();
   const movies = useSelector(filteredMovies);
   const lng = i18n.language;
@@ -18,7 +15,7 @@ export const FilteredMoviesList: React.FC<Props> = ({ genre }) => {
 
   useEffect(() => {
     dispatch(getFilteredMoviesRequested(path));
-  }, [genre]);
+  }, [genre, dispatch, path]);
 
   return (
     <List>
