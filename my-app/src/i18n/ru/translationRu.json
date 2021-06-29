@@ -4,5 +4,10 @@
     "dashboard": "Списки",
     "movies": "Фильмы",
     "randomMovie": "Случайный фильм"
+  },
+  "dashboard": {
+    "nowPlaying": "В прокате",
+    "upcoming": "Ожидаемые",
+    "popular": "Популярные"
   }
 }
