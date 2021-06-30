@@ -13,5 +13,11 @@ export const getGenresUrl = (language: string): string =>
   `https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=${language}`;
 
 //movies
-export const getMoviesUrl = (language: string, genre: string, startDate: string, endDate: string): string =>
-  `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=${genre}&primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}&with_watch_monetization_types=flatrate`;
+export const getMoviesUrl = (
+  language: string,
+  genre: string,
+  startDate: string,
+  endDate: string,
+  page: number
+): string =>
+  `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=${genre}&primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}&page=${page}&with_watch_monetization_types=flatrate`;

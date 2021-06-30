@@ -1,27 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import i18n from 'i18next';
 import { getFilteredMoviesRequested, filteredMovies } from '../store';
 import { getMoviesUrl } from '../../../API';
-import { FilteredMoviesListProps } from '../';
+import { FilteredMoviesListProps, MoviesPagination } from '../';
+import { StyledContainer } from './styles';
+
+const DEFAULT_PAGE = 1;
 
 export const FilteredMoviesList: React.FC<FilteredMoviesListProps> = ({ genre, startDate, endDate }) => {
+  const [page, setPage] = useState(DEFAULT_PAGE);
+  const changePage = (page: number) => {
+    setPage(page);
+  };
+
   const dispatch = useDispatch();
   const movies = useSelector(filteredMovies);
   const language = i18n.language;
-  const path = getMoviesUrl(language, genre, startDate, endDate);
+  const path = getMoviesUrl(language, genre, startDate, endDate, page);
 
   useEffect(() => {
     dispatch(getFilteredMoviesRequested(path));
   }, [genre, dispatch, path]);
 
   return (
-    <List>
-      {movies.map(({ title, id }: any) => (
-        <ListItem key={id}>{title}</ListItem>
-      ))}
-    </List>
+    <>
+      <StyledContainer>
+        <MoviesPagination changePage={changePage} />
+      </StyledContainer>
+      <List>
+        {movies.map(({ title, id }: any) => (
+          <ListItem key={id}>{title}</ListItem>
+        ))}
+      </List>
+    </>
   );
 };
