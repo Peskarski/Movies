@@ -9,5 +9,14 @@
     "nowPlaying": "Now playing",
     "upcoming": "Upcoming",
     "popular": "Popular"
+  },
+  "details": {
+    "releaseDate": "Release date",
+    "country": "Country",
+    "genre": "Genre",
+    "tagline": "Tagline",
+    "budget": "Budget",
+    "revenue": "Revenue",
+    "overview": "Overview"
   }
 }

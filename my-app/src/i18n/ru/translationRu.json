@@ -9,5 +9,14 @@
     "nowPlaying": "В прокате",
     "upcoming": "Ожидаемые",
     "popular": "Популярные"
+  },
+  "details": {
+    "releaseDate": "Дата премьеры",
+    "country": "Страна",
+    "genre": "Жанр",
+    "tagline": "Слоган",
+    "budget": "бюджет",
+    "revenue": "Сборы",
+    "overview": "Описание"
   }
 }
