@@ -10,10 +10,21 @@
     "upcoming": "Upcoming",
     "popular": "Popular"
   },
+<<<<<<< HEAD
   "filters": {
     "genre": "Genre",
     "startDate": "Start Date",
     "endDate": "End Date",
     "apply": "Apply"
+=======
+  "details": {
+    "releaseDate": "Release date",
+    "country": "Country",
+    "genre": "Genre",
+    "tagline": "Tagline",
+    "budget": "Budget",
+    "revenue": "Revenue",
+    "overview": "Overview"
+>>>>>>> added basic movieDetails feature
   }
 }
