@@ -12,9 +12,6 @@ const DEFAULT_PAGE = 1;
 
 export const FilteredMoviesList: React.FC<FilteredMoviesListProps> = ({ genre, startDate, endDate }) => {
   const [page, setPage] = useState(DEFAULT_PAGE);
-  const changePage = (page: number) => {
-    setPage(page);
-  };
 
   const dispatch = useDispatch();
   const movies = useSelector(filteredMovies);
@@ -28,7 +25,7 @@ export const FilteredMoviesList: React.FC<FilteredMoviesListProps> = ({ genre, s
   return (
     <>
       <StyledContainer>
-        <MoviesPagination changePage={changePage} />
+        <MoviesPagination changePage={(page) => setPage(page)} />
       </StyledContainer>
       <List>
         {movies.map(({ title, id }: any) => (
