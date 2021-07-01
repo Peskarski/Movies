@@ -9,5 +9,11 @@
     "nowPlaying": "Now playing",
     "upcoming": "Upcoming",
     "popular": "Popular"
+  },
+  "filters": {
+    "genre": "Genre",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "apply": "Apply"
   }
 }

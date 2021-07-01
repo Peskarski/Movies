@@ -15,4 +15,6 @@ export const StyledButton = styled(Button)({
 
 export const StyledContainer = styled(Container)({
   width: '40%',
+  display: 'flex',
+  flexWrap: 'nowrap',
 });

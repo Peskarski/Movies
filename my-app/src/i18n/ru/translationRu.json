@@ -9,5 +9,11 @@
     "nowPlaying": "В прокате",
     "upcoming": "Ожидаемые",
     "popular": "Популярные"
+  },
+  "filters": {
+    "genre": "Жанр",
+    "startDate": "От",
+    "endDate": "До",
+    "apply": "Применить"
   }
 }

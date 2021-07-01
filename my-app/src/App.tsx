@@ -1,5 +1,6 @@
 import { NavBar } from './components/NavBar';
 import { Dashboard, MoviesList } from './components/Dashboard';
+import { Filters } from './components/Movies';
 import { StyledContainer } from './styles';
 import './i18n/config';
 import { useTranslation } from 'react-i18next';
@@ -12,9 +13,12 @@ const App = () => {
     <Router>
       <StyledContainer maxWidth={false}>
         <h1>{t('title')}</h1>
-        <NavBar />
+        <Switch>
+          <Route path="/" component={NavBar} />
+        </Switch>
         <Switch>
           <Route path="/dashboard" component={Dashboard} />
+          <Route path="/movies" component={Filters} />
         </Switch>
         <Switch>
           <Route path="/dashboard/:list" exact component={MoviesList} />
