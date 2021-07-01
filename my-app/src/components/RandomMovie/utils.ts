@@ -9,5 +9,5 @@ export const getRandomPage = (totalPages: number) => {
 };
 
 export const getRandomMovie = (array: []) => {
-  return array.length ? [array[getRandomNumber(0, array.length - 1)]] : array;
+  return array.length ? array[getRandomNumber(0, array.length - 1)] : array;
 };
