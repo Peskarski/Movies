@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Filters, MoviesPagination, FilteredMoviesList } from './';
-import { useDispatch } from 'react-redux';
+import { Filters } from '../Movies';
+import { useDispatch, useSelector } from 'react-redux';
 import { getMoviesUrl } from '../../API';
 import i18n from 'i18next';
-import { getFilteredMoviesRequested } from './store';
+import { getRandomMovieRequested, randomMovie, totalPagesForRandom } from './store';
+import { getRandomPage } from './utils';
 
 const DEFAULT_PAGE = 1;
 const DEFAULT_FILTERS_VALUE = '';
 
-export const Movies: React.FC = () => {
+export const RandomMovie: React.FC = () => {
   const language = i18n.language;
   const [page, setPage] = useState(DEFAULT_PAGE);
   const dispatch = useDispatch();
+  const totalPages = useSelector(totalPagesForRandom);
+  const movie = useSelector(randomMovie);
 
   const [genre, setGenre] = useState(DEFAULT_FILTERS_VALUE);
   const [startDate, setStartDate] = useState(DEFAULT_FILTERS_VALUE);
@@ -23,17 +26,17 @@ export const Movies: React.FC = () => {
     setGenre(genre);
     setStartDate(startDate);
     setEndDate(endDate);
+    setPage(getRandomPage(totalPages));
   };
 
   useEffect(() => {
-    dispatch(getFilteredMoviesRequested(path));
+    dispatch(getRandomMovieRequested(path));
   }, [dispatch, path]);
 
   return (
     <div>
       <Filters onAplied={applyFilterParams} />
-      <MoviesPagination changePage={(page) => setPage(page)} />
-      <FilteredMoviesList />
+      <p>{movie.title}</p>
     </div>
   );
 };
