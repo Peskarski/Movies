@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyledAppBar, StyledTab, StyledButton, StyledContainer } from './styles';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Tabs from '@material-ui/core/Tabs';
@@ -12,11 +12,25 @@ const navTabs: string[] = ['navBar.dashboard', 'navBar.movies', 'navBar.randomMo
 export const NavBar: React.FC = () => {
   const { t } = useTranslation();
   const history = useHistory();
+  const [value, setValue] = useState(0);
+
+  const handleChange = (e: React.ChangeEvent<{}>, newValue: number) => {
+    setValue(newValue);
+  };
 
   return (
     <StyledContainer>
       <StyledAppBar position="static">
-        <Tabs aria-label="simple tabs example" centered variant="fullWidth">
+        <Tabs
+          aria-label="simple tabs example"
+          centered
+          variant="fullWidth"
+          value={value}
+          onChange={handleChange}
+          TabIndicatorProps={{
+            style: { background: 'black' },
+          }}
+        >
           {navTabs.map((tab) => (
             <StyledTab
               label={t(tab)}

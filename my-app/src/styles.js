@@ -8,6 +8,7 @@ export const StyledContainer = styled(Container)({
   textAlign: 'center',
   width: '90%',
 <<<<<<< HEAD
+<<<<<<< HEAD
   height: '800px',
   fontFamily: 'sans-serif',
   minWidth: '1000px',
@@ -15,4 +16,9 @@ export const StyledContainer = styled(Container)({
   height: '100%',
   fontFamily: 'fangsong',
 >>>>>>> added basic movieDetails feature
+=======
+  height: '100vh',
+  fontFamily: 'fangsong',
+  marginTop: '-20px',
+>>>>>>> stylized movie details
 });

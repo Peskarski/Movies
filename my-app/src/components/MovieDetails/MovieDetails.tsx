@@ -41,7 +41,7 @@ export const MovieDetails: React.FC = () => {
         )}
       </Box>
       <h3>{t('details.overview')}</h3>
-      <p>{overview}</p>
+      <p className="overview">{overview}</p>
     </StyledContainer>
   );
 };

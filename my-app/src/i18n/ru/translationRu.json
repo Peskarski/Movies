@@ -18,11 +18,11 @@
     "apply": "Применить"
 =======
   "details": {
-    "releaseDate": "Дата премьеры",
+    "releaseDate": "Премьера",
     "country": "Страна",
     "genre": "Жанр",
     "tagline": "Слоган",
-    "budget": "бюджет",
+    "budget": "Бюджет",
     "revenue": "Сборы",
     "overview": "Описание"
 >>>>>>> added basic movieDetails feature
