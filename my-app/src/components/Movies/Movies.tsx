@@ -23,6 +23,7 @@ export const Movies: React.FC = () => {
     setGenre(genre);
     setStartDate(startDate);
     setEndDate(endDate);
+    setPage(DEFAULT_PAGE);
   };
 
   useEffect(() => {
@@ -32,7 +33,7 @@ export const Movies: React.FC = () => {
   return (
     <div>
       <Filters onAplied={applyFilterParams} />
-      <MoviesPagination changePage={(page) => setPage(page)} />
+      <MoviesPagination changePage={(page) => setPage(page)} page={page} />
       <FilteredMoviesList />
     </div>
   );
