@@ -1,10 +1,7 @@
 import { NavBar } from './components/NavBar';
 import { Dashboard, MoviesList } from './components/Dashboard';
-<<<<<<< HEAD
 import { Filters } from './components/Movies';
-=======
 import { MovieDetails } from './components/MovieDetails/MovieDetails';
->>>>>>> added basic movieDetails feature
 import { StyledContainer } from './styles';
 import './i18n/config';
 import { useTranslation } from 'react-i18next';
@@ -22,11 +19,8 @@ const App = () => {
         </Switch>
         <Switch>
           <Route path="/dashboard" component={Dashboard} />
-<<<<<<< HEAD
           <Route path="/movies" component={Filters} />
-=======
           <Route path="/movie-details/:id" component={MovieDetails} />
->>>>>>> added basic movieDetails feature
         </Switch>
         <Switch>
           <Route path="/dashboard/:list" exact component={MoviesList} />

@@ -10,13 +10,12 @@
     "upcoming": "Ожидаемые",
     "popular": "Популярные"
   },
-<<<<<<< HEAD
   "filters": {
     "genre": "Жанр",
     "startDate": "От",
     "endDate": "До",
     "apply": "Применить"
-=======
+  },
   "details": {
     "releaseDate": "Премьера",
     "country": "Страна",
@@ -25,6 +24,5 @@
     "budget": "Бюджет",
     "revenue": "Сборы",
     "overview": "Описание"
->>>>>>> added basic movieDetails feature
   }
 }
