@@ -7,4 +7,7 @@ export const StyledContainer = styled(Container)({
     width: '300px',
     height: '420px',
   },
+  '& .overview': {
+    textAlign: 'justify',
+  },
 });

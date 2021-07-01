@@ -2,6 +2,7 @@ import React from 'react';
 import { MovieInfoProps } from '../types';
 import { StyledBox } from './styles';
 import { useTranslation } from 'react-i18next';
+import { arrayToString, numberToMoney } from './utils';
 
 export const MovieInfo: React.FC<MovieInfoProps> = ({
   budget,
@@ -12,8 +13,8 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({
   tagline,
 }) => {
   const { t } = useTranslation();
-  const genresLine = genres.map((genre) => genre.name).join(', ');
-  const countriesLine = production_countries.map((country) => country.name).join(', ');
+  const genresLine = arrayToString(genres);
+  const countriesLine = arrayToString(production_countries);
   const renderData = [
     {
       name: t('details.releaseDate'),
@@ -33,22 +34,26 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({
     },
     {
       name: t('details.budget'),
-      value: budget,
+      value: numberToMoney(budget),
     },
     {
       name: t('details.revenue'),
-      value: revenue,
+      value: numberToMoney(revenue),
     },
   ];
 
   return (
     <div>
-      {renderData.map(({ name, value }) => (
-        <StyledBox display="flex" justifyContent="space-between" key={name}>
-          <p>{name}</p>
-          <p>{value}</p>
-        </StyledBox>
-      ))}
+      {renderData.map(({ name, value }) =>
+        value ? (
+          <StyledBox key={name}>
+            <p className="name">{name}</p>
+            <p className="value">{value}</p>
+          </StyledBox>
+        ) : (
+          <></>
+        )
+      )}
     </div>
   );
 };

@@ -7,6 +7,7 @@ export const StyledContainer = styled(Container)({
   fontWeight: 'bold',
   textAlign: 'center',
   width: '90%',
-  height: '100%',
+  height: '100vh',
   fontFamily: 'fangsong',
+  marginTop: '-20px',
 });
