@@ -50,9 +50,7 @@ export const MovieInfo: React.FC<MovieInfoProps> = ({
             <p className="name">{name}</p>
             <p className="value">{value}</p>
           </StyledBox>
-        ) : (
-          <></>
-        )
+        ) : null
       )}
     </div>
   );
