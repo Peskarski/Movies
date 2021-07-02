@@ -24,7 +24,6 @@ export const getMoviesUrl = (
 ): string =>
   `${BASE_URL}discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=${genre}&primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}&page=${page}&with_watch_monetization_types=flatrate`;
 
-<<<<<<< HEAD
 //details
 export const getMovieDetailsUrl = (language: string, id: number): string =>
   `${BASE_URL}movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=${language}`;
@@ -35,7 +34,3 @@ export const getPosterUrl = (path: string): string => `https://image.tmdb.org/t/
 //recomendations
 export const getRecomendationsUrl = (language: string, id: number): string =>
   `${BASE_URL}/movie/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&page=1`;
-=======
-//poster
-export const getPosterUrl = (path: string): string => `https://image.tmdb.org/t/p/w500/${path}`;
->>>>>>> created movie card and applied it
