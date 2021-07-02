@@ -30,3 +30,7 @@ export const getMovieDetailsUrl = (language: string, id: number): string =>
 
 //poster
 export const getPosterUrl = (path: string): string => `https://image.tmdb.org/t/p/w500/${path}`;
+
+//recomendations
+export const getRecomendationsUrl = (language: string, id: number): string =>
+  `${BASE_URL}/movie/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&page=1`;

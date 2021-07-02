@@ -1,7 +1,7 @@
 import { NavBar } from './components/NavBar';
 import { Dashboard, MoviesList } from './components/Dashboard';
 import { Filters } from './components/Movies';
-import { MovieDetails } from './components/MovieDetails/MovieDetails';
+import { MovieDetails } from './components/MovieDetails';
 import { StyledContainer } from './styles';
 import './i18n/config';
 import { useTranslation } from 'react-i18next';

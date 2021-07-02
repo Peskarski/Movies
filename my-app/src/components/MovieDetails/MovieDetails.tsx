@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import i18n from 'i18next';
 import { useTranslation } from 'react-i18next';
-import { details, getMovieDetailsRequested } from './store';
-import { getMovieDetailsUrl, getPosterUrl } from '../../API';
+import { details, getMovieDetailsRequested, getRecomendationsRequested } from './store';
+import { getMovieDetailsUrl, getPosterUrl, getRecomendationsUrl } from '../../API';
 import { StyledContainer } from './styles';
 import { Box } from '@material-ui/core';
-import { MovieInfo } from './';
+import { MovieInfo, RecomendationsList } from './';
 
 export const MovieDetails: React.FC = () => {
   const dispatch = useDispatch();
@@ -17,12 +17,14 @@ export const MovieDetails: React.FC = () => {
   const language = i18n.language;
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
-  const path = getMovieDetailsUrl(language, Number(id));
+  const detailsPath = getMovieDetailsUrl(language, Number(id));
   const posterSrc = getPosterUrl(poster_path);
+  const recomendationsPath = getRecomendationsUrl(language, Number(id));
 
   useEffect(() => {
-    dispatch(getMovieDetailsRequested(path));
-  }, [dispatch, path]);
+    dispatch(getMovieDetailsRequested(detailsPath));
+    dispatch(getRecomendationsRequested(recomendationsPath));
+  }, [dispatch, detailsPath, recomendationsPath]);
 
   return (
     <StyledContainer>
@@ -40,8 +42,14 @@ export const MovieDetails: React.FC = () => {
           />
         )}
       </Box>
-      <h3>{t('details.overview')}</h3>
-      <p className="overview">{overview}</p>
+      <div>
+        <h3>{t('details.overview')}</h3>
+        <p className="overview">{overview}</p>
+      </div>
+      <div>
+        <h3>{t('details.recomendations')}</h3>
+        <RecomendationsList />
+      </div>
     </StyledContainer>
   );
 };
