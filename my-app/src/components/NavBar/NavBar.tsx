@@ -1,22 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyledAppBar, StyledTab, StyledButton, StyledContainer } from './styles';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Tabs from '@material-ui/core/Tabs';
 import i18n from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { Language } from '../../i18n/config';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const navTabs: string[] = ['navBar.dashboard', 'navBar.movies', 'navBar.randomMovie'];
 
 export const NavBar: React.FC = () => {
   const { t } = useTranslation();
   const history = useHistory();
+  const location = useLocation();
   const [value, setValue] = useState(0);
 
   const handleChange = (e: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
     <StyledContainer>
