@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import {
   nowPlaying,
   popular,
@@ -37,6 +37,7 @@ export const MoviesList: React.FC = () => {
   const movies = useSelector(listsStoreData[list].selector);
   const language = i18n.language;
   const path = getListUrl(language, list);
+  const history = useHistory();
 
   useEffect(() => {
     if (movies.length === 0) {
@@ -51,7 +52,9 @@ export const MoviesList: React.FC = () => {
   return (
     <List>
       {movies.map(({ title, id }: ListItemData) => (
-        <ListItem key={id}>{title}</ListItem>
+        <ListItem key={id} onClick={() => history.push(`/movie-details/${id}`)}>
+          {title}
+        </ListItem>
       ))}
     </List>
   );

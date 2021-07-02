@@ -15,5 +15,15 @@
     "startDate": "От",
     "endDate": "До",
     "apply": "Применить"
+  },
+  "details": {
+    "releaseDate": "Премьера",
+    "country": "Страна",
+    "genre": "Жанр",
+    "tagline": "Слоган",
+    "budget": "Бюджет",
+    "revenue": "Сборы",
+    "overview": "Описание",
+    "recomendations": "Рекомендации"
   }
 }

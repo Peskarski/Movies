@@ -15,5 +15,15 @@
     "startDate": "Start Date",
     "endDate": "End Date",
     "apply": "Apply"
+  },
+  "details": {
+    "releaseDate": "Release date",
+    "country": "Country",
+    "genre": "Genre",
+    "tagline": "Tagline",
+    "budget": "Budget",
+    "revenue": "Revenue",
+    "overview": "Overview",
+    "recomendations": "Recomendations"
   }
 }

@@ -7,6 +7,7 @@ import { getFilteredMoviesRequested, filteredMovies } from '../store';
 import { getMoviesUrl } from '../../../API';
 import { FilteredMoviesListProps, MoviesPagination } from '../';
 import { StyledContainer } from './styles';
+import { useHistory } from 'react-router-dom';
 
 const DEFAULT_PAGE = 1;
 
@@ -17,6 +18,7 @@ export const FilteredMoviesList: React.FC<FilteredMoviesListProps> = ({ genre, s
   const movies = useSelector(filteredMovies);
   const language = i18n.language;
   const path = getMoviesUrl(language, genre, startDate, endDate, page);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getFilteredMoviesRequested(path));
@@ -29,7 +31,9 @@ export const FilteredMoviesList: React.FC<FilteredMoviesListProps> = ({ genre, s
       </StyledContainer>
       <List>
         {movies.map(({ title, id }: any) => (
-          <ListItem key={id}>{title}</ListItem>
+          <ListItem key={id} onClick={() => history.push(`/movie-details/${id}`)}>
+            {title}
+          </ListItem>
         ))}
       </List>
     </>
