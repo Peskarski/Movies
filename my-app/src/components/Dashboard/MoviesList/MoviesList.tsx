@@ -10,11 +10,11 @@ import {
   getUpcomingRequested,
   setInitialMoviesState,
 } from '../store';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import { getListUrl, ListNames } from '../../../API';
 import i18n from 'i18next';
 import { ListItemData } from '../';
+import { MovieCard } from '../../MovieCard';
+import { StyledList } from '../styles';
 
 const listsStoreData = {
   [ListNames.NOW_PLAYING_REQUEST_PATH]: {
@@ -49,10 +49,10 @@ export const MoviesList: React.FC = () => {
   }, [language, dispatch]);
 
   return (
-    <List>
-      {movies.map(({ title, id }: ListItemData) => (
-        <ListItem key={id}>{title}</ListItem>
+    <StyledList>
+      {movies.map(({ title, id, poster_path }: ListItemData) => (
+        <MovieCard title={title} id={id} poster_path={poster_path} key={id} />
       ))}
-    </List>
+    </StyledList>
   );
 };

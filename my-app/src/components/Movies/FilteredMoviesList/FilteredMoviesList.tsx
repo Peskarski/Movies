@@ -1,17 +1,18 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import { filteredMovies } from '../store';
+import { StyledList } from './styles';
+import { MovieCard } from '../../MovieCard';
+import { ListItemData } from '../../Dashboard';
 
 export const FilteredMoviesList: React.FC = () => {
   const movies = useSelector(filteredMovies);
 
   return (
-    <List>
-      {movies.map(({ title, id }: any) => (
-        <ListItem key={id}>{title}</ListItem>
+    <StyledList>
+      {movies.map(({ title, id, poster_path }: ListItemData) => (
+        <MovieCard title={title} id={id} poster_path={poster_path} key={id} />
       ))}
-    </List>
+    </StyledList>
   );
 };
