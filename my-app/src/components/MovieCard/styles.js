@@ -6,10 +6,10 @@ export const StyledCard = styled(Card)({
   maxHeight: '380px',
   margin: ' 20px 40px',
   '& :hover': {
-    backgroundColor: 'grey',
+    backgroundColor: 'rgb(107, 100, 100);',
     color: 'white',
   },
   '& img': {
-    height: '300px',
+    maxHeight: '300px',
   },
 });

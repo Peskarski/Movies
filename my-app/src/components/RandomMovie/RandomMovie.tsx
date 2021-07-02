@@ -5,6 +5,7 @@ import { getMoviesUrl } from '../../API';
 import i18n from 'i18next';
 import { getRandomMovieRequested, randomMovie, totalPagesForRandom } from './store';
 import { getRandomPage } from './utils';
+import { MovieCard } from '../MovieCard';
 
 const DEFAULT_PAGE = 1;
 const DEFAULT_FILTERS_VALUE = '';
@@ -14,7 +15,7 @@ export const RandomMovie: React.FC = () => {
   const [page, setPage] = useState(DEFAULT_PAGE);
   const dispatch = useDispatch();
   const totalPages = useSelector(totalPagesForRandom);
-  const movie = useSelector(randomMovie);
+  const { title, id, poster_path } = useSelector(randomMovie);
 
   const [genre, setGenre] = useState(DEFAULT_FILTERS_VALUE);
   const [startDate, setStartDate] = useState(DEFAULT_FILTERS_VALUE);
@@ -36,7 +37,7 @@ export const RandomMovie: React.FC = () => {
   return (
     <div>
       <Filters onAplied={applyFilterParams} />
-      <p>{movie.title}</p>
+      <MovieCard title={title} id={id} poster_path={poster_path} />
     </div>
   );
 };

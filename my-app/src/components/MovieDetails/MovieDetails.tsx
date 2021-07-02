@@ -46,7 +46,7 @@ export const MovieDetails: React.FC = () => {
         <h3>{t('details.overview')}</h3>
         <p className="overview">{overview}</p>
       </div>
-      <div>
+      <div className="recomendations">
         <h3>{t('details.recomendations')}</h3>
         <RecomendationsList />
       </div>
