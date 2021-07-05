@@ -24,7 +24,7 @@ export function* watchMovieDetailsSaga() {
   yield takeEvery(GET_MOVIE_DETAILS_REQUESTED, getMovieDetailsSaga);
 }
 
-const recomendationsListLength = 5;
+const recomendationsListLength = 6;
 
 export function* getRecomendationsSaga({ payload }: AnyAction): any {
   try {

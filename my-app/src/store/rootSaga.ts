@@ -2,6 +2,7 @@ import { all } from 'redux-saga/effects';
 import { watchMoviesSaga } from '../components/Dashboard/store';
 import { watchGenresSaga, watchFilteredMoviesSaga } from '../components/Movies/store';
 import { watchMovieDetailsSaga, watchRecomendationsSaga } from '../components/MovieDetails/store';
+import { watchRandomMovieSaga } from '../components/RandomMovie/store';
 
 export default function* rootSaga() {
   yield all([
@@ -10,5 +11,6 @@ export default function* rootSaga() {
     watchFilteredMoviesSaga(),
     watchMovieDetailsSaga(),
     watchRecomendationsSaga(),
+    watchRandomMovieSaga(),
   ]);
 }

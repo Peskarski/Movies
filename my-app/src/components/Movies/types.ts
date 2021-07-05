@@ -3,8 +3,6 @@ export type FilterItemData = {
   id: string;
 };
 
-export type FilteredMoviesListProps = {
-  genre: string;
-  startDate: string;
-  endDate: string;
+export type FiltersProps = {
+  onAplied: (genre: string, startDate: string, endDate: string) => void;
 };

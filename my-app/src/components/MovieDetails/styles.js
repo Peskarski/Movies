@@ -9,5 +9,9 @@ export const StyledContainer = styled(Container)({
   },
   '& .overview': {
     textAlign: 'justify',
+    fontWeight: 'lighter',
+  },
+  '& .recomendations': {
+    marginTop: '60px',
   },
 });

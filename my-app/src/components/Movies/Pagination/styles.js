@@ -1,4 +1,5 @@
 import Pagination from '@material-ui/lab/Pagination';
+import { Container } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
 
 export const StyledPagination = styled(Pagination)({
@@ -13,4 +14,10 @@ export const StyledPagination = styled(Pagination)({
     fontWeight: 'bold',
     background: 'rgb(45, 140, 181)',
   },
+});
+
+export const StyledContainer = styled(Container)({
+  display: 'flex',
+  justifyContent: 'space-around',
+  marginTop: '8px',
 });
