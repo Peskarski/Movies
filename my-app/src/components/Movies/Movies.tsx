@@ -18,6 +18,7 @@ export const Movies: React.FC = () => {
   const [endDate, setEndDate] = useState(DEFAULT_FILTERS_VALUE);
 
   const path = getMoviesUrl(language, genre, startDate, endDate, page);
+  console.log(path);
 
   const applyFilterParams = (genre: string, startDate: string, endDate: string) => {
     setGenre(genre);

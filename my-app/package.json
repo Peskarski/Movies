@@ -1,35 +1,13 @@
 {
-  "homepage": "https://peskarski.github.io/Movies",
+  "homepage": "/movies/",
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "jest": {
-    "verbose": true,
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest",
-      "^.+\\.jsx?$": "babel-jest"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ],
-    "moduleDirectories": [
-      "node_modules"
-    ],
-    "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": [
-      "@testing-library/jest-dom/extend-expect"
-    ]
-  },
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/lab": "^4.0.0-alpha.58",
     "@material-ui/pickers": "^3.3.10",
+    "@reduxjs/toolkit": "^1.6.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -40,6 +18,7 @@
     "i18next": "^20.3.2",
     "jest": "^27.0.6",
     "jest-environment-jsdom": "^27.0.6",
+    "jest-fetch-mock": "^3.0.3",
     "prettier-eslint": "^12.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -84,6 +63,10 @@
     "@types/jest": "^26.0.23",
     "@types/react-router-dom": "^5.1.7",
     "gh-pages": "^3.2.3",
+    "msw": "^0.30.1",
     "ts-jest": "^27.0.3"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

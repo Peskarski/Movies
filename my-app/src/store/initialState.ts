@@ -4,8 +4,8 @@ import { initialMovieDetailsState } from '../components/MovieDetails/store';
 import { initialRandomMovieState } from '../components/RandomMovie/store';
 
 export const initialState = {
-  initialListsState,
-  initialMoviesState,
-  initialMovieDetailsState,
-  initialRandomMovieState,
+  lists: initialListsState,
+  movies: initialMoviesState,
+  movieDetails: initialMovieDetailsState,
+  random: initialRandomMovieState,
 } as any;

@@ -14,6 +14,7 @@ export function* getGenresSaga({ payload }: AnyAction): any {
   try {
     const data = yield fetch(payload);
     const result = yield data.json();
+    console.log('res');
     yield put(getGenresSuccess(result.genres));
   } catch (error) {
     put(getGenresError(error));
