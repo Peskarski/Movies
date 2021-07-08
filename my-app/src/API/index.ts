@@ -34,3 +34,7 @@ export const getPosterUrl = (path: string): string => `https://image.tmdb.org/t/
 //recomendations
 export const getRecomendationsUrl = (language: string, id: number): string =>
   `${BASE_URL}/movie/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&page=1`;
+
+//request token
+export const getRequestTokenUrl = (): string =>
+  `${BASE_URL}/authentication/token/new?api_key=${process.env.REACT_APP_API_KEY}`;
