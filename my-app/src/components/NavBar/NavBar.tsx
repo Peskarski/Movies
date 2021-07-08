@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyledAppBar, StyledTab, StyledButton, StyledContainer } from './styles';
+import { StyledAppBar, StyledTab, StyledButton, StyledContainer, StyledLogInButton } from './styles';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Tabs from '@material-ui/core/Tabs';
 import i18n from 'i18next';
@@ -25,6 +25,7 @@ export const NavBar: React.FC = () => {
 
   return (
     <StyledContainer>
+      <StyledLogInButton onClick={() => history.push(`/login`)}>{t('navBar.logIn')}</StyledLogInButton>
       <StyledAppBar position="static">
         <Tabs
           aria-label="simple tabs example"

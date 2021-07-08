@@ -28,3 +28,15 @@ export const StyledContainer = styled(Container)({
   display: 'flex',
   justifyContent: 'space-between',
 });
+
+export const StyledLogInButton = styled(Button)({
+  width: '80px',
+  fontSize: '16px',
+  fontWeight: 'bold',
+  color: 'white',
+  background: 'rgb(82, 75, 75)',
+  '&:hover': {
+    color: 'black',
+    background: 'rgb(227, 218, 218)',
+  },
+});

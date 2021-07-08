@@ -3,7 +3,8 @@
   "navBar": {
     "dashboard": "Списки",
     "movies": "Фильмы",
-    "randomMovie": "Случайный фильм"
+    "randomMovie": "Случайный фильм",
+    "logIn": "Войти"
   },
   "dashboard": {
     "nowPlaying": "В прокате",
@@ -25,5 +26,10 @@
     "revenue": "Сборы",
     "overview": "Описание",
     "recomendations": "Рекомендации"
+  },
+  "logIn": {
+    "username": "Имя пользователя",
+    "password": "Пароль",
+    "logIn": "Войти"
   }
 }
