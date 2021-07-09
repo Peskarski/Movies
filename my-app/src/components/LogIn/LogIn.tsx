@@ -10,10 +10,10 @@ import { useParams } from 'react-router-dom';
 export const LogIn: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const reqToken = useSelector(requestToken);
+  const token = useSelector(requestToken);
   const isUserLoggedIn: boolean = useSelector(sessionID);
   const requestTokenPath = getRequestTokenUrl();
-  const permissionPath = getPermissionUrl(reqToken);
+  const permissionPath = getPermissionUrl(token);
   const { request_token } = useParams<any>();
   const sessionIDPath = getSessionIDUrl(request_token);
 
@@ -29,8 +29,7 @@ export const LogIn: React.FC = () => {
 
   return (
     <StyledContainer>
-      {!request_token && !isUserLoggedIn && <Link href={permissionPath}>{t('logIn.logInLink')}</Link>}
-      {isUserLoggedIn && <p>{t('logIn.isLogged')}</p>}
+      {isUserLoggedIn ? <p>{t('logIn.isLogged')}</p> : <Link href={permissionPath}>{t('logIn.logInLink')}</Link>}
     </StyledContainer>
   );
 };
