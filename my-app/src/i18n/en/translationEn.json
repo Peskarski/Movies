@@ -28,8 +28,8 @@
     "recomendations": "Recomendations"
   },
   "logIn": {
-    "username": "Username",
-    "password": "Password",
-    "logIn": "Log In"
+    "logIn": "Log In",
+    "logInLink": "Follow the link for log in",
+    "isLogged": "You have successfuly logged in"
   }
 }

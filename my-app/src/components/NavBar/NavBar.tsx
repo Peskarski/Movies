@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { StyledAppBar, StyledTab, StyledButton, StyledContainer, StyledLogInButton } from './styles';
+import { StyledAppBar, StyledTab, StyledButton, StyledContainer, StyledLogInButton, StyledPersonIcon } from './styles';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Tabs from '@material-ui/core/Tabs';
 import i18n from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { Language } from '../../i18n/config';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { sessionID } from '../LogIn/store';
 
 const navTabs: string[] = ['navBar.dashboard', 'navBar.movies', 'navBar.randomMovie'];
 
@@ -14,6 +16,7 @@ export const NavBar: React.FC = () => {
   const history = useHistory();
   const location = useLocation();
   const [value, setValue] = useState(0);
+  const isUserLoggedIn: boolean = useSelector(sessionID);
 
   const handleChange = (e: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
@@ -53,6 +56,7 @@ export const NavBar: React.FC = () => {
           </StyledButton>
         ))}
       </ButtonGroup>
+      {isUserLoggedIn && <StyledPersonIcon fontSize="large" />}
     </StyledContainer>
   );
 };

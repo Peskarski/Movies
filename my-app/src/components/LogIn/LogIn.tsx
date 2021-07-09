@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import TextField from '@material-ui/core/TextField';
-import { StyledButton, StyledContainer } from './styles';
+import { Link } from '@material-ui/core';
+import { StyledContainer } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRequestTokenRequested, requestToken, getSessionIDRequested } from './store';
+import { getRequestTokenRequested, requestToken, getSessionIDRequested, sessionID } from './store';
 import { getRequestTokenUrl, getPermissionUrl, getSessionIDUrl } from '../../API';
 import { useParams } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ export const LogIn: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const reqToken = useSelector(requestToken);
+  const isUserLoggedIn: boolean = useSelector(sessionID);
   const requestTokenPath = getRequestTokenUrl();
   const permissionPath = getPermissionUrl(reqToken);
   const { request_token } = useParams<any>();
@@ -20,16 +21,16 @@ export const LogIn: React.FC = () => {
     dispatch(getRequestTokenRequested(requestTokenPath));
   }, []);
 
-  const handleLogInClick = () => {
-    dispatch(getSessionIDRequested(sessionIDPath, JSON.stringify({ request_token })));
-  };
+  useEffect(() => {
+    if (request_token) {
+      dispatch(getSessionIDRequested(sessionIDPath, JSON.stringify({ request_token })));
+    }
+  }, [dispatch, request_token, sessionIDPath]);
 
   return (
     <StyledContainer>
-      <TextField id="outlined-basic" label={t('logIn.username')} variant="outlined" />
-      <TextField id="outlined-basic" label={t('logIn.password')} variant="outlined" />
-      <StyledButton onClick={handleLogInClick}>{t('logIn.logIn')}</StyledButton>
-      <a href={permissionPath}>Link</a>
+      {!request_token && !isUserLoggedIn && <Link href={permissionPath}>{t('logIn.logInLink')}</Link>}
+      {isUserLoggedIn && <p>{t('logIn.isLogged')}</p>}
     </StyledContainer>
   );
 };
