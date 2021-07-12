@@ -46,3 +46,7 @@ export const getPermissionUrl = (requestToken: string): string =>
 //session token
 export const getSessionIDUrl = (request_token: string): string =>
   `${BASE_URL}authentication/session/new?api_key=${process.env.REACT_APP_API_KEY}&request_token=${request_token}`;
+
+//account lists
+export const getCreatedListsUrl = (language: string, sessionID: string): string =>
+  `${BASE_URL}account/${process.env.REACT_ACCOUNT_ID}/lists?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&session_id=${sessionID}&page=1`;

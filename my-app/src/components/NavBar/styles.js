@@ -15,6 +15,7 @@ export const StyledTab = styled(Tab)({
   fontSize: '20px',
   fontWeight: 'bold',
   color: 'black',
+  whiteSpace: 'nowrap',
 });
 
 export const StyledButton = styled(Button)({

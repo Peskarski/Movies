@@ -47,6 +47,7 @@ export const NavBar: React.FC = () => {
               onClick={() => history.push(`/${t(tab, { lng: 'en' })}/`)}
             />
           ))}
+          {isUserLoggedIn && <StyledTab label={t('navBar.lists')} onClick={() => history.push(`/lists/`)} />}
         </Tabs>
       </StyledAppBar>
       <ButtonGroup variant="contained" aria-label="contained primary button group">

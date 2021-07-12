@@ -4,6 +4,7 @@
     "dashboard": "Dashboard",
     "movies": "Movies",
     "randomMovie": "Random movie",
+    "lists": "Lists",
     "logIn": "Log In"
   },
   "dashboard": {
@@ -31,5 +32,10 @@
     "logIn": "Log In",
     "logInLink": "Follow the link for log in",
     "isLogged": "You have successfuly logged in"
+  },
+  "lists": {
+    "name": "List name",
+    "description": "Description",
+    "createList": "Create List"
   }
 }
