@@ -7,14 +7,16 @@ import { createList } from '../store';
 import { sessionID } from '../../LogIn/store';
 import { getCreateListUrl } from '../../../API';
 
+const DEFAULT_INPUT_VALUE = '';
+
 export const ListInput: React.FC = () => {
   const { t } = useTranslation();
   const language = i18n.language;
   const dispatch = useDispatch();
   const id = useSelector(sessionID);
 
-  const [name, setName] = useState<string>();
-  const [description, setDescription] = useState<string>();
+  const [name, setName] = useState<string>(DEFAULT_INPUT_VALUE);
+  const [description, setDescription] = useState<string>(DEFAULT_INPUT_VALUE);
 
   const path = getCreateListUrl(id);
 
@@ -34,6 +36,8 @@ export const ListInput: React.FC = () => {
 
   const handleClick = () => {
     dispatch(createList({ url: path, listData }));
+    setName(DEFAULT_INPUT_VALUE);
+    setDescription(DEFAULT_INPUT_VALUE);
   };
 
   return (

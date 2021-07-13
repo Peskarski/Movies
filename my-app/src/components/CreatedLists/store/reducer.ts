@@ -1,9 +1,17 @@
-import { GET_CREATED_LISTS_ERROR, GET_CREATED_LISTS_SUCCESS, GET_CREATED_LISTS_REQUESTED } from './actions';
+import {
+  GET_CREATED_LISTS_ERROR,
+  GET_CREATED_LISTS_SUCCESS,
+  GET_CREATED_LISTS_REQUESTED,
+  GET_CREATED_LIST_STATUS,
+  GET_DELETED_LIST_STATUS,
+} from './actions';
 
 export const initialCreatedListsState = {
   lists: [],
   status: null,
   error: null,
+  lastCreatedList: {},
+  lastDeletedList: {},
 };
 
 enum Status {
@@ -31,6 +39,18 @@ export const createdLists = (state = initialCreatedListsState, action: any) => {
       return {
         ...state,
         error: action.payload,
+      };
+
+    case GET_CREATED_LIST_STATUS:
+      return {
+        ...state,
+        lastCreatedList: action.payload,
+      };
+
+    case GET_DELETED_LIST_STATUS:
+      return {
+        ...state,
+        lastDeletedList: action.payload,
       };
 
     default:

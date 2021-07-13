@@ -6,6 +6,8 @@ import {
   GET_CREATED_LISTS_REQUESTED,
   CREATE_LIST,
   DELETE_LIST,
+  getCreatedListStatus,
+  getDeletedListStatus,
 } from './actions';
 
 export function* getCreatedListsSaga({ payload }: AnyAction): any {
@@ -24,13 +26,15 @@ export function* watchCreatedListsSaga() {
 
 export function* createListSaga({ payload }: AnyAction): any {
   try {
-    yield fetch(payload.url, {
+    const data = yield fetch(payload.url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify(payload.listData),
     });
+    const response = yield data.json();
+    yield put(getCreatedListStatus(response));
   } catch (error) {
     console.error(error);
   }
@@ -42,9 +46,11 @@ export function* watchCreateListSaga() {
 
 export function* deleteListSaga({ payload }: AnyAction): any {
   try {
-    yield fetch(payload, {
+    const data = yield fetch(payload, {
       method: 'DELETE',
     });
+    const response = yield data.json();
+    yield put(getDeletedListStatus(response));
   } catch (error) {
     console.error(error);
   }
