@@ -1,3 +1,5 @@
+import { sessionID } from '../components/LogIn/store';
+
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
 //lists
@@ -50,3 +52,11 @@ export const getSessionIDUrl = (request_token: string): string =>
 //account lists
 export const getCreatedListsUrl = (language: string, sessionID: string): string =>
   `${BASE_URL}account/${process.env.REACT_ACCOUNT_ID}/lists?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&session_id=${sessionID}&page=1`;
+
+//create list
+export const getCreateListUrl = (sessionID: string): string =>
+  `${BASE_URL}list?api_key=${process.env.REACT_APP_API_KEY}&session_id=${sessionID}`;
+
+//delete list
+export const deleteListUrl = (sessionID: string, listID: string): string =>
+  `${BASE_URL}list/${listID}?api_key=${process.env.REACT_APP_API_KEY}&session_id=${sessionID}`;

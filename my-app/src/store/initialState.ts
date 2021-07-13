@@ -11,5 +11,5 @@ export const initialState = {
   movieDetails: initialMovieDetailsState,
   random: initialRandomMovieState,
   logIn: initialLogInState,
-  accountLists: initialCreatedListsState,
+  createdLists: initialCreatedListsState,
 } as any;

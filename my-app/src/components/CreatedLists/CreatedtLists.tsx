@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { ListInput } from './Input/ListInput';
+import { ListInput } from './Input';
+import { Lists } from './Lists';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCreatedListsRequested } from './store';
 import { getCreatedListsUrl } from '../../API';
@@ -16,5 +17,10 @@ export const CreatedLists: React.FC = () => {
     dispatch(getCreatedListsRequested(path));
   }, [dispatch, path]);
 
-  return <ListInput />;
+  return (
+    <div>
+      <ListInput />
+      <Lists />
+    </div>
+  );
 };
