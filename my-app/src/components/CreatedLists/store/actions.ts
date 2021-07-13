@@ -50,7 +50,7 @@ export const deleteList = (url: string) => {
 
 export const getDeletedListStatus = (deletedList: {}) => {
   return {
-    type: GET_CREATED_LIST_STATUS,
+    type: GET_DELETED_LIST_STATUS,
     payload: deletedList,
   };
 };

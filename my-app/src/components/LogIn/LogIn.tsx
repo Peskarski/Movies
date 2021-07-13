@@ -11,7 +11,7 @@ export const LogIn: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const token = useSelector(requestToken);
-  const isUserLoggedIn: boolean = useSelector(sessionID);
+  const session_id = useSelector(sessionID);
   const requestTokenPath = getRequestTokenUrl();
   const permissionPath = getPermissionUrl(token);
   const { request_token } = useParams<any>();
@@ -19,6 +19,9 @@ export const LogIn: React.FC = () => {
 
   useEffect(() => {
     dispatch(getRequestTokenRequested(requestTokenPath));
+    return () => {
+      localStorage.setItem('session_id', session_id);
+    };
   }, []);
 
   useEffect(() => {
@@ -29,7 +32,7 @@ export const LogIn: React.FC = () => {
 
   return (
     <StyledContainer>
-      {isUserLoggedIn ? <p>{t('logIn.isLogged')}</p> : <Link href={permissionPath}>{t('logIn.logInLink')}</Link>}
+      {session_id ? <p>{t('logIn.isLogged')}</p> : <Link href={permissionPath}>{t('logIn.logInLink')}</Link>}
     </StyledContainer>
   );
 };

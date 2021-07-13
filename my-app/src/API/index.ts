@@ -1,5 +1,3 @@
-import { sessionID } from '../components/LogIn/store';
-
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
 //lists

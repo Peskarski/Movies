@@ -2,7 +2,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { userLists, deleteList } from '../store';
 import { sessionID } from '../../LogIn/store';
-import { List, ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@material-ui/core';
+import { ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@material-ui/core';
+import { StyledList, StyledContainer } from './styles';
 import { ListItemType } from '../types';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { deleteListUrl } from '../../../API';
@@ -18,17 +19,19 @@ export const Lists: React.FC = () => {
   };
 
   return (
-    <List>
-      {lists.map(({ name, id }: ListItemType) => (
-        <ListItem key={id}>
-          <ListItemText primary={name} />
-          <ListItemSecondaryAction>
-            <IconButton>
-              <DeleteIcon onClick={() => handleDeleteListClick(id)} />
-            </IconButton>
-          </ListItemSecondaryAction>
-        </ListItem>
+    <StyledList>
+      {lists.map(({ name, description, id }: ListItemType) => (
+        <StyledContainer key={id}>
+          <ListItem>
+            <ListItemText primary={name} secondary={description} />
+            <ListItemSecondaryAction>
+              <IconButton onClick={() => handleDeleteListClick(id)}>
+                <DeleteIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
+        </StyledContainer>
       ))}
-    </List>
+    </StyledList>
   );
 };

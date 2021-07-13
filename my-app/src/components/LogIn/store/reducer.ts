@@ -14,7 +14,9 @@ export const initialLogInState = {
     error: null,
   },
   sessionID: {
-    tokenDetails: {},
+    tokenDetails: {
+      session_id: localStorage.getItem('session_id'),
+    },
     status: null,
     error: null,
   },
