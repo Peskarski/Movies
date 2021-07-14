@@ -34,3 +34,15 @@ export const getPosterUrl = (path: string): string => `https://image.tmdb.org/t/
 //recomendations
 export const getRecomendationsUrl = (language: string, id: number): string =>
   `${BASE_URL}/movie/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&page=1`;
+
+//request token
+export const getRequestTokenUrl = (): string =>
+  `${BASE_URL}/authentication/token/new?api_key=${process.env.REACT_APP_API_KEY}`;
+
+//permission
+export const getPermissionUrl = (requestToken: string): string =>
+  `https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=http://localhost:3000/login/${requestToken}`;
+
+//session token
+export const getSessionIDUrl = (request_token: string): string =>
+  `${BASE_URL}authentication/session/new?api_key=${process.env.REACT_APP_API_KEY}&request_token=${request_token}`;
