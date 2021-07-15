@@ -1,5 +1,6 @@
 import React from 'react';
 import i18n from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { CardContent, CardMedia, CardActionArea, IconButton, Menu, MenuItem } from '@material-ui/core';
 import { getPosterUrl, getCreatedListsUrl, getAddMovieToListUrl, getRemoveMovieFromListUrl } from '../../API';
 import { useHistory, useParams } from 'react-router-dom';
@@ -12,6 +13,7 @@ import { userLists, getCreatedListsRequested, addMovieToList, removeMovieFromLis
 import { MenuItemData, MovieCardData } from './types';
 
 export const MovieCard: React.FC<MovieCardData> = ({ title, movieID, poster_path, isRenderedInUserList }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const posterSrc = getPosterUrl(poster_path);
   const history = useHistory();
@@ -83,6 +85,13 @@ export const MovieCard: React.FC<MovieCardData> = ({ title, movieID, poster_path
                 <IconButton color="secondary" onClick={openLists}>
                   <AddIcon />
                   <Menu open={isMenuOpened} anchorEl={menuAnchorEl} onClose={closeLists}>
+                    <MenuItem
+                      onClick={() => {
+                        history.push(`/lists/`);
+                      }}
+                    >
+                      {t('lists.createList')}
+                    </MenuItem>
                     {lists.map(({ name, id }: MenuItemData) => (
                       <MenuItem
                         key={id}
