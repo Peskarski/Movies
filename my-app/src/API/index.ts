@@ -41,7 +41,7 @@ export const getRequestTokenUrl = (): string =>
 
 //permission
 export const getPermissionUrl = (requestToken: string): string =>
-  `https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=http://localhost:3000/login/${requestToken}`;
+  `https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=http://peskarski.github.io/Movies/login/${requestToken}`;
 
 //session token
 export const getSessionIDUrl = (request_token: string): string =>
