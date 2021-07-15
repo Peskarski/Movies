@@ -66,3 +66,8 @@ export const getAddMovieToListUrl = (sessionID: string, listID: string): string 
 // list details
 export const getListDetailsUrl = (listID: string, language: string): string =>
   `${BASE_URL}list/${listID}?api_key=${process.env.REACT_APP_API_KEY}&language=${language}`;
+
+//remove movie from the list
+
+export const getRemoveMovieFromListUrl = (sessionID: string, listID: string): string =>
+  `${BASE_URL}list/${listID}/remove_item?api_key=${process.env.REACT_APP_API_KEY}&session_id=${sessionID}`;

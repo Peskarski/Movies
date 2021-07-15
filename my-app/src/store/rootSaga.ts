@@ -9,6 +9,7 @@ import {
   watchCreateListSaga,
   watchDeleteListSaga,
   watchAddMovieToListSaga,
+  watchRemoveMovieFromListSaga,
 } from '../components/CreatedLists/store';
 import { watchListDetailsSaga } from '../components/CreatedListDetails/store';
 
@@ -27,5 +28,6 @@ export default function* rootSaga() {
     watchDeleteListSaga(),
     watchAddMovieToListSaga(),
     watchListDetailsSaga(),
+    watchRemoveMovieFromListSaga(),
   ]);
 }

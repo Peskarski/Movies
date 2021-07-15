@@ -1,26 +1,28 @@
 import React from 'react';
 import i18n from 'i18next';
 import { CardContent, CardMedia, CardActionArea, IconButton, Menu, MenuItem } from '@material-ui/core';
-import { getPosterUrl, getCreatedListsUrl, getAddMovieToListUrl } from '../../API';
-import { useHistory } from 'react-router-dom';
+import { getPosterUrl, getCreatedListsUrl, getAddMovieToListUrl, getRemoveMovieFromListUrl } from '../../API';
+import { useHistory, useParams } from 'react-router-dom';
 import { StyledCard, StyledPopperContainer, StyledPopper } from './styles';
 import { useSelector, useDispatch } from 'react-redux';
 import { sessionID } from '../LogIn/store';
 import AddIcon from '@material-ui/icons/Add';
-import { userLists, getCreatedListsRequested, addMovieToList } from '../CreatedLists/store';
+import RemoveIcon from '@material-ui/icons/Remove';
+import { userLists, getCreatedListsRequested, addMovieToList, removeMovieFromList } from '../CreatedLists/store';
 import { MenuItemData, MovieCardData } from './types';
 
-export const MovieCard: React.FC<MovieCardData> = ({ title, movieID, poster_path }) => {
+export const MovieCard: React.FC<MovieCardData> = ({ title, movieID, poster_path, isRenderedInUserList }) => {
   const dispatch = useDispatch();
   const posterSrc = getPosterUrl(poster_path);
   const history = useHistory();
   const session_id = useSelector(sessionID);
   const lists = useSelector(userLists);
   const language = i18n.language;
+  const { list_id } = useParams<{ list_id: string }>();
   const createdListsPath = getCreatedListsUrl(language, session_id);
 
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
-  const open = Boolean(anchorEl);
+  const isPopperOpened = Boolean(anchorEl);
 
   const [menuAnchorEl, setMenuAnchorEl] = React.useState<HTMLElement | null>(null);
   const isMenuOpened = Boolean(menuAnchorEl);
@@ -33,25 +35,34 @@ export const MovieCard: React.FC<MovieCardData> = ({ title, movieID, poster_path
     setAnchorEl(null);
   };
 
-  const openMenu = (e: React.MouseEvent<HTMLElement>) => {
+  const openLists = (e: React.MouseEvent<HTMLElement>) => {
     if (!lists.length) {
       dispatch(getCreatedListsRequested(createdListsPath));
     }
     setMenuAnchorEl(e.currentTarget);
   };
 
-  const closeMenu = (e: React.MouseEvent<HTMLElement>) => {
+  const closeLists = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     setMenuAnchorEl(null);
   };
 
-  const handleAddMovieToListClick = (movieID: string, listID: string) => {
+  const handleAddMovieToListClick = (listID: string) => {
     const path = getAddMovieToListUrl(session_id, listID);
     const addMovieData = {
       url: path,
       movieID,
     };
     dispatch(addMovieToList(addMovieData));
+  };
+
+  const handleRemoveMovieFromListClick = () => {
+    const path = getRemoveMovieFromListUrl(session_id, list_id);
+    const removedMovie = {
+      url: path,
+      movieID,
+    };
+    dispatch(removeMovieFromList(removedMovie));
   };
 
   return (
@@ -63,21 +74,21 @@ export const MovieCard: React.FC<MovieCardData> = ({ title, movieID, poster_path
           }}
         >
           {session_id && (
-            <StyledPopper open={open} anchorEl={anchorEl} placement="top">
+            <StyledPopper open={isPopperOpened} anchorEl={anchorEl} placement="top">
               <StyledPopperContainer
                 onClick={(e) => {
                   e.stopPropagation();
                 }}
               >
-                <IconButton color="secondary" onClick={openMenu}>
+                <IconButton color="secondary" onClick={openLists}>
                   <AddIcon />
-                  <Menu open={isMenuOpened} anchorEl={menuAnchorEl} onClose={closeMenu}>
+                  <Menu open={isMenuOpened} anchorEl={menuAnchorEl} onClose={closeLists}>
                     {lists.map(({ name, id }: MenuItemData) => (
                       <MenuItem
                         key={id}
                         onClick={(e) => {
-                          handleAddMovieToListClick(movieID, id);
-                          closeMenu(e);
+                          handleAddMovieToListClick(id);
+                          closeLists(e);
                         }}
                       >
                         {name}
@@ -85,6 +96,11 @@ export const MovieCard: React.FC<MovieCardData> = ({ title, movieID, poster_path
                     ))}
                   </Menu>
                 </IconButton>
+                {isRenderedInUserList && (
+                  <IconButton color="secondary" onClick={handleRemoveMovieFromListClick}>
+                    <RemoveIcon />
+                  </IconButton>
+                )}
               </StyledPopperContainer>
             </StyledPopper>
           )}

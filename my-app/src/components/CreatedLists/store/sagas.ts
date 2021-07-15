@@ -10,6 +10,8 @@ import {
   getDeletedListStatus,
   ADD_MOVIE_TO_LIST,
   getAddedMovieStatus,
+  REMOVE_MOVIE_FROM_LIST,
+  getRemovedMovieStatus,
 } from './actions';
 
 export function* getCreatedListsSaga({ payload }: AnyAction): any {
@@ -80,4 +82,24 @@ export function* addMovieToListSaga({ payload }: AnyAction): any {
 
 export function* watchAddMovieToListSaga() {
   yield takeEvery(ADD_MOVIE_TO_LIST, addMovieToListSaga);
+}
+
+export function* removeMovieFromListSaga({ payload }: AnyAction): any {
+  try {
+    const data = yield fetch(payload.url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify({ media_id: payload.movieID }),
+    });
+    const response = yield data.json();
+    yield put(getRemovedMovieStatus(response));
+  } catch (error) {
+    yield put(getRemovedMovieStatus(error));
+  }
+}
+
+export function* watchRemoveMovieFromListSaga() {
+  yield takeEvery(REMOVE_MOVIE_FROM_LIST, removeMovieFromListSaga);
 }

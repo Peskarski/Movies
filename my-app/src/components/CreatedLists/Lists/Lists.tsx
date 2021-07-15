@@ -27,7 +27,12 @@ export const Lists: React.FC = () => {
           <ListItem>
             <ListItemText primary={name} secondary={description} />
             <ListItemSecondaryAction>
-              <IconButton onClick={() => handleDeleteListClick(id)}>
+              <IconButton
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDeleteListClick(id);
+                }}
+              >
                 <DeleteIcon />
               </IconButton>
             </ListItemSecondaryAction>

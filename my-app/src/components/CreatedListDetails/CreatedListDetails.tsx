@@ -7,6 +7,7 @@ import { getListDetailsUrl } from '../../API';
 import { ListItemData } from '../Dashboard';
 import { MovieCard } from '../MovieCard';
 import { StyledList } from './styles';
+import { lastRemovedMovie } from '../CreatedLists/store';
 
 export const CreatedListDetails: React.FC = () => {
   const dispatch = useDispatch();
@@ -15,10 +16,11 @@ export const CreatedListDetails: React.FC = () => {
   const path = getListDetailsUrl(list_id, language);
   const movies = useSelector(moviesFromList);
   const name = useSelector(listName);
+  const removedMovie = useSelector(lastRemovedMovie);
 
   useEffect(() => {
     dispatch(getListDetailsRequested(path));
-  }, [dispatch, path]);
+  }, [dispatch, path, removedMovie]);
 
   return (
     <div>
@@ -26,7 +28,7 @@ export const CreatedListDetails: React.FC = () => {
       {movies && (
         <StyledList>
           {movies.map(({ title, id, poster_path }: ListItemData) => (
-            <MovieCard title={title} movieID={id} poster_path={poster_path} key={id} />
+            <MovieCard title={title} movieID={id} poster_path={poster_path} key={id} isRenderedInUserList />
           ))}
         </StyledList>
       )}
