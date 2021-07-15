@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { userLists, deleteList } from '../store';
 import { sessionID } from '../../LogIn/store';
 import { ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@material-ui/core';
@@ -12,6 +13,7 @@ export const Lists: React.FC = () => {
   const lists = useSelector(userLists);
   const dispatch = useDispatch();
   const id = useSelector(sessionID);
+  const history = useHistory();
 
   const handleDeleteListClick = (listID: string) => {
     const path = deleteListUrl(id, listID);
@@ -21,7 +23,7 @@ export const Lists: React.FC = () => {
   return (
     <StyledList>
       {lists.map(({ name, description, id }: ListItemType) => (
-        <StyledContainer key={id}>
+        <StyledContainer key={id} onClick={() => history.push(`${id}`)}>
           <ListItem>
             <ListItemText primary={name} secondary={description} />
             <ListItemSecondaryAction>

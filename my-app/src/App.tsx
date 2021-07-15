@@ -4,6 +4,7 @@ import { MovieDetails } from './components/MovieDetails';
 import { Movies } from './components/Movies';
 import { RandomMovie } from './components/RandomMovie';
 import { CreatedLists } from './components/CreatedLists';
+import { CreatedListDetails } from './components/CreatedListDetails';
 import { LogIn } from './components/LogIn';
 import { StyledContainer } from './styles';
 import './i18n/config';
@@ -27,7 +28,8 @@ const App = () => {
           <Route path="/movie-details/:id" component={MovieDetails} />
           <Route path="/movies" component={Movies} />
           <Route path="/random movie/" component={RandomMovie} />
-          <Route path="/lists/" component={CreatedLists} />
+          <Route path="/lists" exact component={CreatedLists} />
+          <Route path="/lists/:list_id" component={CreatedListDetails} />
         </Switch>
         <Switch>
           <Route path="/dashboard/:list" exact component={MoviesList} />

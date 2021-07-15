@@ -10,6 +10,7 @@ import {
   watchDeleteListSaga,
   watchAddMovieToListSaga,
 } from '../components/CreatedLists/store';
+import { watchListDetailsSaga } from '../components/CreatedListDetails/store';
 
 export default function* rootSaga() {
   yield all([
@@ -25,5 +26,6 @@ export default function* rootSaga() {
     watchCreateListSaga(),
     watchDeleteListSaga(),
     watchAddMovieToListSaga(),
+    watchListDetailsSaga(),
   ]);
 }
