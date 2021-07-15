@@ -4,6 +4,7 @@ import {
   GET_CREATED_LISTS_REQUESTED,
   GET_CREATED_LIST_STATUS,
   GET_DELETED_LIST_STATUS,
+  GET_ADDED_MOVIE_STATUS,
 } from './actions';
 
 export const initialCreatedListsState = {
@@ -12,6 +13,7 @@ export const initialCreatedListsState = {
   error: null,
   lastCreatedList: {},
   lastDeletedList: {},
+  lastAddedMovie: {},
 };
 
 enum Status {
@@ -51,6 +53,12 @@ export const createdLists = (state = initialCreatedListsState, action: any) => {
       return {
         ...state,
         lastDeletedList: action.payload,
+      };
+
+    case GET_ADDED_MOVIE_STATUS:
+      return {
+        ...state,
+        lastAddedMovie: action.payload,
       };
 
     default:

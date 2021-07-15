@@ -5,6 +5,8 @@ export const CREATE_LIST = 'CREATE_LIST';
 export const GET_CREATED_LIST_STATUS = 'GET_CREATED_LIST_STATUS';
 export const DELETE_LIST = 'DELETE_LIST';
 export const GET_DELETED_LIST_STATUS = 'GET_DELETED_LIST_STATUS';
+export const ADD_MOVIE_TO_LIST = 'ADD_MOVIE_TO_LIST';
+export const GET_ADDED_MOVIE_STATUS = 'GET_ADDED_MOVIE_STATUS';
 
 export const getCreatedListsSuccess = (createdLists: []) => {
   return {
@@ -52,5 +54,19 @@ export const getDeletedListStatus = (deletedList: {}) => {
   return {
     type: GET_DELETED_LIST_STATUS,
     payload: deletedList,
+  };
+};
+
+export const addMovieToList = (addMovieData: {}) => {
+  return {
+    type: ADD_MOVIE_TO_LIST,
+    payload: addMovieData,
+  };
+};
+
+export const getAddedMovieStatus = (addedMovie: {}) => {
+  return {
+    type: GET_ADDED_MOVIE_STATUS,
+    payload: addedMovie,
   };
 };

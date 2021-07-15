@@ -58,3 +58,7 @@ export const getCreateListUrl = (sessionID: string): string =>
 //delete list
 export const deleteListUrl = (sessionID: string, listID: string): string =>
   `${BASE_URL}list/${listID}?api_key=${process.env.REACT_APP_API_KEY}&session_id=${sessionID}`;
+
+//add movie to the list
+export const getAddMovieToListUrl = (sessionID: string, listID: string): string =>
+  `${BASE_URL}list/${listID}/add_item?api_key=${process.env.REACT_APP_API_KEY}&session_id=${sessionID}`;

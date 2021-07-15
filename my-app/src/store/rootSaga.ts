@@ -4,7 +4,12 @@ import { watchGenresSaga, watchFilteredMoviesSaga } from '../components/Movies/s
 import { watchMovieDetailsSaga, watchRecomendationsSaga } from '../components/MovieDetails/store';
 import { watchRandomMovieSaga } from '../components/RandomMovie/store';
 import { watchRequestTokenSaga, watchSessionIDSaga } from '../components/LogIn/store';
-import { watchCreatedListsSaga, watchCreateListSaga, watchDeleteListSaga } from '../components/CreatedLists/store';
+import {
+  watchCreatedListsSaga,
+  watchCreateListSaga,
+  watchDeleteListSaga,
+  watchAddMovieToListSaga,
+} from '../components/CreatedLists/store';
 
 export default function* rootSaga() {
   yield all([
@@ -19,5 +24,6 @@ export default function* rootSaga() {
     watchCreatedListsSaga(),
     watchCreateListSaga(),
     watchDeleteListSaga(),
+    watchAddMovieToListSaga(),
   ]);
 }

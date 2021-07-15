@@ -1,23 +1,16 @@
 import React from 'react';
 import i18n from 'i18next';
-import { ListItemData } from '../Dashboard';
 import { CardContent, CardMedia, CardActionArea, IconButton, Menu, MenuItem } from '@material-ui/core';
-import { getPosterUrl } from '../../API';
+import { getPosterUrl, getCreatedListsUrl, getAddMovieToListUrl } from '../../API';
 import { useHistory } from 'react-router-dom';
 import { StyledCard, StyledPopperContainer, StyledPopper } from './styles';
 import { useSelector, useDispatch } from 'react-redux';
 import { sessionID } from '../LogIn/store';
 import AddIcon from '@material-ui/icons/Add';
-import { userLists } from '../CreatedLists/store';
-import { getCreatedListsRequested } from '../CreatedLists/store';
-import { getCreatedListsUrl } from '../../API';
+import { userLists, getCreatedListsRequested, addMovieToList } from '../CreatedLists/store';
+import { MenuItemData, MovieCardData } from './types';
 
-type MenuItemType = {
-  name: string;
-  id: string;
-};
-
-export const MovieCard: React.FC<ListItemData> = ({ title, id, poster_path }) => {
+export const MovieCard: React.FC<MovieCardData> = ({ title, movieID, poster_path }) => {
   const dispatch = useDispatch();
   const posterSrc = getPosterUrl(poster_path);
   const history = useHistory();
@@ -52,12 +45,21 @@ export const MovieCard: React.FC<ListItemData> = ({ title, id, poster_path }) =>
     setMenuAnchorEl(null);
   };
 
+  const handleAddMovieToListClick = (movieID: string, listID: string) => {
+    const path = getAddMovieToListUrl(session_id, listID);
+    const addMovieData = {
+      url: path,
+      movieID,
+    };
+    dispatch(addMovieToList(addMovieData));
+  };
+
   return (
     <>
       <StyledCard onMouseEnter={openPopper} onMouseLeave={closePopper}>
         <CardActionArea
           onClick={(e) => {
-            history.push(`/movie-details/${id}`);
+            history.push(`/movie-details/${movieID}`);
           }}
         >
           {session_id && (
@@ -70,8 +72,14 @@ export const MovieCard: React.FC<ListItemData> = ({ title, id, poster_path }) =>
                 <IconButton color="secondary" onClick={openMenu}>
                   <AddIcon />
                   <Menu open={isMenuOpened} anchorEl={menuAnchorEl} onClose={closeMenu}>
-                    {lists.map(({ name, id }: MenuItemType) => (
-                      <MenuItem key={id} onClick={closeMenu}>
+                    {lists.map(({ name, id }: MenuItemData) => (
+                      <MenuItem
+                        key={id}
+                        onClick={(e) => {
+                          handleAddMovieToListClick(movieID, id);
+                          closeMenu(e);
+                        }}
+                      >
                         {name}
                       </MenuItem>
                     ))}
