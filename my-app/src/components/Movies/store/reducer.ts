@@ -9,6 +9,9 @@ import {
   GET_CURRENT_COUNTRY_ERROR,
   GET_CURRENT_COUNTRY_REQUESTED,
   GET_CURRENT_COUNTRY_SUCCESS,
+  GET_PROVIDERS_ERROR,
+  GET_PROVIDERS_REQUESTED,
+  GET_PROVIDERS_SUCCESS,
 } from './actions';
 
 export const initialMoviesState = {
@@ -26,6 +29,11 @@ export const initialMoviesState = {
   totalPages: 0,
   currentCountry: {
     code: null,
+    status: null,
+    error: null,
+  },
+  providers: {
+    providers: [],
     status: null,
     error: null,
   },
@@ -130,6 +138,36 @@ export const movies = (state = initialMoviesState, action: any) => {
         ...state,
         currentCountry: {
           code: null,
+          status: Status.Error,
+          error: action.payload,
+        },
+      };
+
+    case GET_PROVIDERS_REQUESTED:
+      return {
+        ...state,
+        providers: {
+          providers: null,
+          status: Status.Requested,
+          error: null,
+        },
+      };
+
+    case GET_PROVIDERS_SUCCESS:
+      return {
+        ...state,
+        providers: {
+          providers: action.payload,
+          status: Status.Success,
+          error: null,
+        },
+      };
+
+    case GET_PROVIDERS_ERROR:
+      return {
+        ...state,
+        providers: {
+          providers: null,
           status: Status.Error,
           error: action.payload,
         },

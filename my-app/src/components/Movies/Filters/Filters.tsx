@@ -3,9 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { InputLabel, MenuItem, FormControl, TextField } from '@material-ui/core';
 import { StyledSelect, StyledContainer } from './styles';
 import { StyledButton } from '../../Dashboard/styles';
-import { getGenresUrl, getCurrentCountryUrl } from '../../../API';
+import { getGenresUrl, getCurrentCountryUrl, getProvidersUrl } from '../../../API';
 import i18n from 'i18next';
-import { getGenresRequested, genres, getCurrentCountryRequested } from '../store';
+import {
+  getGenresRequested,
+  genres,
+  getCurrentCountryRequested,
+  getProvidersRequested,
+  currentCountryCode,
+} from '../store';
 import { useTranslation } from 'react-i18next';
 import { FilterItemData } from '../';
 import { FiltersProps } from '../types';
@@ -19,6 +25,8 @@ export const Filters: React.FC<FiltersProps> = ({ onAplied }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const genresList = useSelector(genres);
+  const countryCode = useSelector(currentCountryCode);
+  const providersPath = getProvidersUrl(language, countryCode);
 
   const [genre, setGenre] = useState(DEFAULT_FILTERS_VALUE);
   const [startDate, setStartDate] = useState(DEFAULT_FILTERS_VALUE);
@@ -39,8 +47,15 @@ export const Filters: React.FC<FiltersProps> = ({ onAplied }) => {
 
   useEffect(() => {
     dispatch(getGenresRequested(genresPath));
+  }, [dispatch, genresPath]);
+
+  useEffect(() => {
     dispatch(getCurrentCountryRequested(currentCountryPath));
-  }, [dispatch, genresPath, currentCountryPath]);
+  }, [dispatch, currentCountryPath]);
+
+  useEffect(() => {
+    dispatch(getProvidersRequested(providersPath));
+  }, [dispatch, providersPath]);
 
   return (
     <StyledContainer>

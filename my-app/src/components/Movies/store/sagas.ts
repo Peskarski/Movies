@@ -11,6 +11,9 @@ import {
   getCurrentCountryError,
   getCurrentCountrySuccess,
   GET_CURRENT_COUNTRY_REQUESTED,
+  getProvidersError,
+  getProvidersSuccess,
+  GET_PROVIDERS_REQUESTED,
 } from './actions';
 
 export function* getGenresSaga({ payload }: AnyAction): any {
@@ -47,7 +50,6 @@ export function* getCurrentCountrySaga({ payload }: AnyAction): any {
     console.log(payload);
     const data = yield fetch(payload);
     const result = yield data.json();
-    console.log(result);
     yield put(getCurrentCountrySuccess(result.country_code));
   } catch (error) {
     put(getCurrentCountryError(error));
@@ -56,4 +58,18 @@ export function* getCurrentCountrySaga({ payload }: AnyAction): any {
 
 export function* watchCurrentCountrySaga() {
   yield takeEvery(GET_CURRENT_COUNTRY_REQUESTED, getCurrentCountrySaga);
+}
+
+export function* getProvidersSaga({ payload }: AnyAction): any {
+  try {
+    const data = yield fetch(payload);
+    const result = yield data.json();
+    yield put(getProvidersSuccess(result.results));
+  } catch (error) {
+    put(getProvidersError(error));
+  }
+}
+
+export function* watchProvidersSaga() {
+  yield takeEvery(GET_PROVIDERS_REQUESTED, getProvidersSaga);
 }

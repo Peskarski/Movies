@@ -38,3 +38,7 @@ export const getRecomendationsUrl = (language: string, id: number): string =>
 //current country
 export const getCurrentCountryUrl = (): string =>
   `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.REACT_APP_GEO_KEY}`;
+
+//providers
+export const getProvidersUrl = (language: string, country: string) =>
+  `${BASE_URL}watch/providers/movie?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&watch_region=${country}`;
