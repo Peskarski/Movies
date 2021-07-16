@@ -34,3 +34,7 @@ export const getPosterUrl = (path: string): string => `https://image.tmdb.org/t/
 //recomendations
 export const getRecomendationsUrl = (language: string, id: number): string =>
   `${BASE_URL}/movie/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&page=1`;
+
+//current country
+export const getCurrentCountryUrl = (): string =>
+  `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.REACT_APP_GEO_KEY}`;

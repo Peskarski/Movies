@@ -8,6 +8,9 @@ import {
   getFilteredMoviesSuccess,
   GET_FILTERED_MOVIES_REQUESTED,
   getTotalPages,
+  getCurrentCountryError,
+  getCurrentCountrySuccess,
+  GET_CURRENT_COUNTRY_REQUESTED,
 } from './actions';
 
 export function* getGenresSaga({ payload }: AnyAction): any {
@@ -37,4 +40,20 @@ export function* getFilteredMoviesSaga({ payload }: AnyAction): any {
 
 export function* watchFilteredMoviesSaga() {
   yield takeEvery(GET_FILTERED_MOVIES_REQUESTED, getFilteredMoviesSaga);
+}
+
+export function* getCurrentCountrySaga({ payload }: AnyAction): any {
+  try {
+    console.log(payload);
+    const data = yield fetch(payload);
+    const result = yield data.json();
+    console.log(result);
+    yield put(getCurrentCountrySuccess(result.country_code));
+  } catch (error) {
+    put(getCurrentCountryError(error));
+  }
+}
+
+export function* watchCurrentCountrySaga() {
+  yield takeEvery(GET_CURRENT_COUNTRY_REQUESTED, getCurrentCountrySaga);
 }

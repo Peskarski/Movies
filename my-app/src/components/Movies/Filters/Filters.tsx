@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { InputLabel, MenuItem, FormControl, TextField } from '@material-ui/core';
 import { StyledSelect, StyledContainer } from './styles';
 import { StyledButton } from '../../Dashboard/styles';
-import { getGenresUrl } from '../../../API';
+import { getGenresUrl, getCurrentCountryUrl } from '../../../API';
 import i18n from 'i18next';
-import { getGenresRequested, genres } from '../store';
+import { getGenresRequested, genres, getCurrentCountryRequested } from '../store';
 import { useTranslation } from 'react-i18next';
 import { FilterItemData } from '../';
 import { FiltersProps } from '../types';
@@ -14,7 +14,8 @@ const DEFAULT_FILTERS_VALUE = '';
 
 export const Filters: React.FC<FiltersProps> = ({ onAplied }) => {
   const language = i18n.language;
-  const path = getGenresUrl(language);
+  const genresPath = getGenresUrl(language);
+  const currentCountryPath = getCurrentCountryUrl();
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const genresList = useSelector(genres);
@@ -37,8 +38,9 @@ export const Filters: React.FC<FiltersProps> = ({ onAplied }) => {
   };
 
   useEffect(() => {
-    dispatch(getGenresRequested(path));
-  }, [dispatch, path]);
+    dispatch(getGenresRequested(genresPath));
+    dispatch(getCurrentCountryRequested(currentCountryPath));
+  }, [dispatch, genresPath, currentCountryPath]);
 
   return (
     <StyledContainer>

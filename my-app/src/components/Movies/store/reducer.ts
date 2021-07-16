@@ -6,6 +6,9 @@ import {
   GET_FILTERED_MOVIES_ERROR,
   GET_FILTERED_MOVIES_SUCCESS,
   GET_TOTAL_PAGES,
+  GET_CURRENT_COUNTRY_ERROR,
+  GET_CURRENT_COUNTRY_REQUESTED,
+  GET_CURRENT_COUNTRY_SUCCESS,
 } from './actions';
 
 export const initialMoviesState = {
@@ -21,6 +24,11 @@ export const initialMoviesState = {
     totalPages: 0,
   },
   totalPages: 0,
+  currentCountry: {
+    code: null,
+    status: null,
+    error: null,
+  },
 };
 
 enum Status {
@@ -95,6 +103,36 @@ export const movies = (state = initialMoviesState, action: any) => {
       return {
         ...state,
         totalPages: action.payload,
+      };
+
+    case GET_CURRENT_COUNTRY_REQUESTED:
+      return {
+        ...state,
+        currentCountry: {
+          code: null,
+          status: Status.Requested,
+          error: null,
+        },
+      };
+
+    case GET_CURRENT_COUNTRY_SUCCESS:
+      return {
+        ...state,
+        currentCountry: {
+          code: action.payload,
+          status: Status.Success,
+          error: null,
+        },
+      };
+
+    case GET_CURRENT_COUNTRY_ERROR:
+      return {
+        ...state,
+        currentCountry: {
+          code: null,
+          status: Status.Error,
+          error: action.payload,
+        },
       };
 
     default:
