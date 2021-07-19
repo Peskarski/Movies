@@ -6,6 +6,7 @@ import {
   GET_RECOMENDATIONS_SUCCESS,
   GET_RECOMENDATIONS_ERROR,
 } from './actions';
+import { Status } from '../../../store/types';
 
 export const initialMovieDetailsState = {
   details: {},
@@ -17,12 +18,6 @@ export const initialMovieDetailsState = {
     error: null,
   },
 };
-
-enum Status {
-  Requested = 'requested',
-  Success = 'success',
-  Error = 'error',
-}
 
 export const movieDetails = (state = initialMovieDetailsState, action: any) => {
   switch (action.type) {

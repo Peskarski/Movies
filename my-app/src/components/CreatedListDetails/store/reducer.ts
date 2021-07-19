@@ -1,4 +1,6 @@
 import { GET_LIST_DETAILS_ERROR, GET_LIST_DETAILS_SUCCESS, GET_LIST_DETAILS_REQUESTED } from './actions';
+import { Status } from '../../../store/types';
+import { ListAction } from './types';
 
 export const initialListDetailsState = {
   details: {},
@@ -6,13 +8,7 @@ export const initialListDetailsState = {
   error: null,
 };
 
-enum Status {
-  Requested = 'requested',
-  Success = 'success',
-  Error = 'error',
-}
-
-export const listDetails = (state = initialListDetailsState, action: any) => {
+export const listDetails = (state = initialListDetailsState, action: ListAction) => {
   switch (action.type) {
     case GET_LIST_DETAILS_REQUESTED:
       return {

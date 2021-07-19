@@ -28,7 +28,9 @@ export const NavBar: React.FC = () => {
 
   return (
     <StyledContainer>
-      <StyledLogInButton onClick={() => history.push(`/login`)}>{t('navBar.logIn')}</StyledLogInButton>
+      {!isUserLoggedIn && (
+        <StyledLogInButton onClick={() => history.push(`/login`)}>{t('navBar.logIn')}</StyledLogInButton>
+      )}
       <StyledAppBar position="static">
         <Tabs
           aria-label="simple tabs example"

@@ -15,7 +15,7 @@ const App = () => {
   const { t } = useTranslation();
 
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router>
       <StyledContainer maxWidth={false}>
         <h1>{t('title')}</h1>
         <Switch>

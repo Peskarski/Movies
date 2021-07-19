@@ -3,3 +3,8 @@ export type ListItemType = {
   description: string;
   id: string;
 };
+
+export type FormData = {
+  name: string;
+  description: string;
+};

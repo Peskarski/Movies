@@ -6,6 +6,7 @@ import {
   GET_SESSION_ID_REQUESTED,
   GET_SESSION_ID_SUCCESS,
 } from './actions';
+import { Status } from '../../../store/types';
 
 export const initialLogInState = {
   requestToken: {
@@ -21,12 +22,6 @@ export const initialLogInState = {
     error: null,
   },
 };
-
-enum Status {
-  Requested = 'requested',
-  Success = 'success',
-  Error = 'error',
-}
 
 export const logIn = (state = initialLogInState, action: any) => {
   switch (action.type) {

@@ -45,10 +45,10 @@ export const getCreatedListStatus = (createdList: {}) => {
   };
 };
 
-export const deleteList = (url: string) => {
+export const deleteList = (deleteData: {}) => {
   return {
     type: DELETE_LIST,
-    payload: url,
+    payload: deleteData,
   };
 };
 

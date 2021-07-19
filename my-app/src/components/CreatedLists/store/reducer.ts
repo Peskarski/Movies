@@ -7,6 +7,7 @@ import {
   GET_ADDED_MOVIE_STATUS,
   GET_REMOVED_MOVIE_STATUS,
 } from './actions';
+import { Status } from '../../../store/types';
 
 export const initialCreatedListsState = {
   lists: [],
@@ -17,12 +18,6 @@ export const initialCreatedListsState = {
   lastAddedMovie: {},
   lastRemovedMovie: {},
 };
-
-enum Status {
-  Requested = 'requested',
-  Success = 'success',
-  Error = 'error',
-}
 
 export const createdLists = (state = initialCreatedListsState, action: any) => {
   switch (action.type) {

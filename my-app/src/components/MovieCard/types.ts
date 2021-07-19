@@ -6,6 +6,6 @@ export type MenuItemData = {
 export type MovieCardData = {
   title: string;
   movieID: string;
-  poster_path: string;
+  posterPath: string;
   isRenderedInUserList?: boolean;
 };

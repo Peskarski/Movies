@@ -2,7 +2,13 @@ import React from 'react';
 import i18n from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { CardContent, CardMedia, CardActionArea, IconButton, Menu, MenuItem } from '@material-ui/core';
-import { getPosterUrl, getCreatedListsUrl, getAddMovieToListUrl, getRemoveMovieFromListUrl } from '../../API';
+import {
+  getPosterUrl,
+  getCreatedListsUrl,
+  getAddMovieToListUrl,
+  getRemoveMovieFromListUrl,
+  getListDetailsUrl,
+} from '../../API';
 import { useHistory, useParams } from 'react-router-dom';
 import { StyledCard, StyledPopperContainer, StyledPopper } from './styles';
 import { useSelector, useDispatch } from 'react-redux';
@@ -12,10 +18,10 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import { userLists, getCreatedListsRequested, addMovieToList, removeMovieFromList } from '../CreatedLists/store';
 import { MenuItemData, MovieCardData } from './types';
 
-export const MovieCard: React.FC<MovieCardData> = ({ title, movieID, poster_path, isRenderedInUserList }) => {
+export const MovieCard: React.FC<MovieCardData> = ({ title, movieID, posterPath, isRenderedInUserList }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const posterSrc = getPosterUrl(poster_path);
+  const posterSrc = getPosterUrl(posterPath);
   const history = useHistory();
   const session_id = useSelector(sessionID);
   const lists = useSelector(userLists);
@@ -59,12 +65,14 @@ export const MovieCard: React.FC<MovieCardData> = ({ title, movieID, poster_path
   };
 
   const handleRemoveMovieFromListClick = () => {
-    const path = getRemoveMovieFromListUrl(session_id, list_id);
-    const removedMovie = {
-      url: path,
+    const removeMoviePath = getRemoveMovieFromListUrl(session_id, list_id);
+    const listDetailsPath = getListDetailsUrl(list_id, language);
+    const removedMovieData = {
+      removeMovieUrl: removeMoviePath,
+      listDetailsUrl: listDetailsPath,
       movieID,
     };
-    dispatch(removeMovieFromList(removedMovie));
+    dispatch(removeMovieFromList(removedMovieData));
   };
 
   return (

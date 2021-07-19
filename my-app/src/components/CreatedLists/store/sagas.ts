@@ -12,7 +12,9 @@ import {
   getAddedMovieStatus,
   REMOVE_MOVIE_FROM_LIST,
   getRemovedMovieStatus,
+  getCreatedListsRequested,
 } from './actions';
+import { getListDetailsRequested } from '../../CreatedListDetails/store';
 
 export function* getCreatedListsSaga({ payload }: AnyAction): any {
   try {
@@ -30,7 +32,7 @@ export function* watchCreatedListsSaga() {
 
 export function* createListSaga({ payload }: AnyAction): any {
   try {
-    const data = yield fetch(payload.url, {
+    const data = yield fetch(payload.createListUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -39,6 +41,7 @@ export function* createListSaga({ payload }: AnyAction): any {
     });
     const response = yield data.json();
     yield put(getCreatedListStatus(response));
+    yield put(getCreatedListsRequested(payload.createdListsUrl));
   } catch (error) {
     yield put(getCreatedListStatus(error));
   }
@@ -50,11 +53,12 @@ export function* watchCreateListSaga() {
 
 export function* deleteListSaga({ payload }: AnyAction): any {
   try {
-    const data = yield fetch(payload, {
+    const data = yield fetch(payload.deleteListUrl, {
       method: 'DELETE',
     });
     const response = yield data.json();
     yield put(getDeletedListStatus(response));
+    yield put(getCreatedListsRequested(payload.createdListsUrl));
   } catch (error) {
     yield put(getDeletedListStatus(error));
   }
@@ -86,7 +90,7 @@ export function* watchAddMovieToListSaga() {
 
 export function* removeMovieFromListSaga({ payload }: AnyAction): any {
   try {
-    const data = yield fetch(payload.url, {
+    const data = yield fetch(payload.removeMovieUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -95,6 +99,7 @@ export function* removeMovieFromListSaga({ payload }: AnyAction): any {
     });
     const response = yield data.json();
     yield put(getRemovedMovieStatus(response));
+    yield put(getListDetailsRequested(payload.listDetailsUrl));
   } catch (error) {
     yield put(getRemovedMovieStatus(error));
   }
