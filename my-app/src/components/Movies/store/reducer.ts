@@ -147,7 +147,7 @@ export const movies = (state = initialMoviesState, action: any) => {
       return {
         ...state,
         providers: {
-          providers: null,
+          providers: [],
           status: Status.Requested,
           error: null,
         },

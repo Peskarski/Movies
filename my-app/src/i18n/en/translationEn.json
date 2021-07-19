@@ -12,6 +12,7 @@
   },
   "filters": {
     "genre": "Genre",
+    "providers": "Providers",
     "startDate": "Start Date",
     "endDate": "End Date",
     "apply": "Apply"
