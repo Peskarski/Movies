@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { InputLabel, MenuItem, FormControl, TextField } from '@material-ui/core';
 import { StyledSelect, StyledContainer } from './styles';
 import { StyledButton } from '../../Dashboard/styles';
-import { getGenresUrl, getCurrentCountryUrl, getProvidersUrl } from '../../../API';
+import { getGenresUrl, getCurrentCountryUrl, getProvidersUrl, getAvailableCountriesUrl } from '../../../API';
 import i18n from 'i18next';
 import {
   getGenresRequested,
@@ -23,11 +23,12 @@ export const Filters: React.FC<FiltersProps> = ({ onAplied }) => {
   const language = i18n.language;
   const genresPath = getGenresUrl(language);
   const currentCountryPath = getCurrentCountryUrl();
+  const availableCountriesPath = getAvailableCountriesUrl();
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const genresList = useSelector(genres);
   const providersList = useSelector(providers);
-  const countryCode = 'RU';
+  const countryCode = useSelector(currentCountryCode);
   const providersPath = getProvidersUrl(language, countryCode);
 
   const [genre, setGenre] = useState(DEFAULT_FILTERS_VALUE);
@@ -57,8 +58,13 @@ export const Filters: React.FC<FiltersProps> = ({ onAplied }) => {
   }, [dispatch, genresPath]);
 
   useEffect(() => {
-    dispatch(getCurrentCountryRequested(currentCountryPath));
-  }, [dispatch, currentCountryPath]);
+    dispatch(
+      getCurrentCountryRequested({
+        currentCountryUrl: currentCountryPath,
+        availableCountriesUrl: availableCountriesPath,
+      })
+    );
+  }, [dispatch, currentCountryPath, availableCountriesPath]);
 
   useEffect(() => {
     dispatch(getProvidersRequested(providersPath));

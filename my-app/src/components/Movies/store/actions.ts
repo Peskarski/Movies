@@ -75,10 +75,10 @@ export const getCurrentCountryError = (error: Error) => {
   };
 };
 
-export const getCurrentCountryRequested = (url: string) => {
+export const getCurrentCountryRequested = (countryData: {}) => {
   return {
     type: GET_CURRENT_COUNTRY_REQUESTED,
-    payload: url,
+    payload: countryData,
   };
 };
 

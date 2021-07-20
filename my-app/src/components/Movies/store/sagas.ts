@@ -15,6 +15,9 @@ import {
   getProvidersSuccess,
   GET_PROVIDERS_REQUESTED,
 } from './actions';
+import { CountryCode } from './types';
+
+const DEFAULT_COUNTRY_CODE = 'US';
 
 export function* getGenresSaga({ payload }: AnyAction): any {
   try {
@@ -47,10 +50,17 @@ export function* watchFilteredMoviesSaga() {
 
 export function* getCurrentCountrySaga({ payload }: AnyAction): any {
   try {
-    console.log(payload);
-    const data = yield fetch(payload);
-    const result = yield data.json();
-    yield put(getCurrentCountrySuccess(result.country_code));
+    const availableCountriesData = yield fetch(payload.availableCountriesUrl);
+    const availableCountriesResult = yield availableCountriesData.json();
+    const availableCountries = availableCountriesResult.results.map(({ iso_3166_1 }: CountryCode) => iso_3166_1);
+
+    const currentCountryData = yield fetch(payload.currentCountryUrl);
+    const currentCountryResult = yield currentCountryData.json();
+    const { country_code } = currentCountryResult;
+
+    availableCountries.includes(country_code)
+      ? yield put(getCurrentCountrySuccess(country_code))
+      : yield put(getCurrentCountrySuccess(DEFAULT_COUNTRY_CODE));
   } catch (error) {
     put(getCurrentCountryError(error));
   }
