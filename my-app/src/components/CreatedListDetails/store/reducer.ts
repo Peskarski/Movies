@@ -1,6 +1,6 @@
 import { GET_LIST_DETAILS_ERROR, GET_LIST_DETAILS_SUCCESS, GET_LIST_DETAILS_REQUESTED } from './actions';
 import { Status } from '../../../store/types';
-import { ListAction } from './types';
+import { ListAction } from './actions';
 
 export const initialListDetailsState = {
   details: {},

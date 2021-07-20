@@ -9,8 +9,3 @@ export type ListDetails = {
   poster_path: string | null;
   items: {}[];
 };
-
-export type ListAction = {
-  type: string;
-  payload: string | ListDetails | Error;
-};
