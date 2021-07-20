@@ -9,3 +9,9 @@ export type MovieCardData = {
   posterPath: string;
   isRenderedInUserList?: boolean;
 };
+
+export interface Popper {
+  anchorEl: HTMLElement | null;
+  movieID: string;
+  isRenderedInUserList: boolean | undefined;
+}
