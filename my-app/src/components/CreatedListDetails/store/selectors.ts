@@ -1,2 +1,4 @@
-export const moviesFromList = ({ listDetails }: any) => listDetails.details.items;
-export const listName = ({ listDetails }: any) => listDetails.details.name;
+import { initialState } from '../../../store/initialState';
+
+export const moviesFromList = ({ listDetails }: typeof initialState) => listDetails.details.items;
+export const listName = ({ listDetails }: typeof initialState) => listDetails.details.name;
