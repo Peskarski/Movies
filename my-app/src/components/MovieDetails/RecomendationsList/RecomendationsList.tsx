@@ -10,7 +10,7 @@ export const RecomendationsList: React.FC = () => {
   return (
     <StyledList>
       {list.map(({ title, id, poster_path }: ListItemData) => (
-        <MovieCard title={title} id={id} poster_path={poster_path} key={id} />
+        <MovieCard title={title} movieID={id} posterPath={poster_path} key={id} />
       ))}
     </StyledList>
   );

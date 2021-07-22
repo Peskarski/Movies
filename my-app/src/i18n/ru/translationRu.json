@@ -3,7 +3,9 @@
   "navBar": {
     "dashboard": "Списки",
     "movies": "Фильмы",
-    "randomMovie": "Случайный фильм"
+    "randomMovie": "Случайный фильм",
+    "lists": "Списки",
+    "logIn": "Войти"
   },
   "dashboard": {
     "nowPlaying": "В прокате",
@@ -26,5 +28,15 @@
     "revenue": "Сборы",
     "overview": "Описание",
     "recomendations": "Рекомендации"
+  },
+  "logIn": {
+    "logIn": "Войти",
+    "logInLink": "Для входа в систему перейдите по ссылке",
+    "isLogged": "Вы успешно вошли в систему"
+  },
+  "lists": {
+    "name": "Название списка",
+    "description": "Описание",
+    "createList": "Создать список"
   }
 }

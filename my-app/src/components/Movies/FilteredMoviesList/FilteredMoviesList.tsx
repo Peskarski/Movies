@@ -11,7 +11,7 @@ export const FilteredMoviesList: React.FC = () => {
   return (
     <StyledList>
       {movies.map(({ title, id, poster_path }: ListItemData) => (
-        <MovieCard title={title} id={id} poster_path={poster_path} key={id} />
+        <MovieCard title={title} movieID={id} posterPath={poster_path} key={id} />
       ))}
     </StyledList>
   );

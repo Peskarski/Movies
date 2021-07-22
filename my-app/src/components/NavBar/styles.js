@@ -3,9 +3,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Tab from '@material-ui/core/Tab';
 import { Container } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import PersonIcon from '@material-ui/icons/Person';
 
 export const StyledAppBar = styled(AppBar)({
-  width: '80%',
+  width: '75%',
   margin: 'auto',
   background: 'rgb(45, 140, 181)',
 });
@@ -14,6 +15,7 @@ export const StyledTab = styled(Tab)({
   fontSize: '20px',
   fontWeight: 'bold',
   color: 'black',
+  whiteSpace: 'nowrap',
 });
 
 export const StyledButton = styled(Button)({
@@ -27,4 +29,21 @@ export const StyledButton = styled(Button)({
 export const StyledContainer = styled(Container)({
   display: 'flex',
   justifyContent: 'space-between',
+});
+
+export const StyledLogInButton = styled(Button)({
+  width: '80px',
+  fontSize: '16px',
+  fontWeight: 'bold',
+  color: 'white',
+  background: 'rgb(20, 19, 19)',
+  '&:hover': {
+    color: 'black',
+    background: 'rgb(227, 218, 218)',
+  },
+});
+
+export const StyledPersonIcon = styled(PersonIcon)({
+  margin: 'auto 8px',
+  color: 'rgb(20, 19, 19)',
 });

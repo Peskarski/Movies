@@ -13,6 +13,7 @@ import {
   GET_PROVIDERS_REQUESTED,
   GET_PROVIDERS_SUCCESS,
 } from './actions';
+import { Status } from '../../../store/types';
 
 export const initialMoviesState = {
   genres: {
@@ -38,12 +39,6 @@ export const initialMoviesState = {
     error: null,
   },
 };
-
-enum Status {
-  Requested = 'requested',
-  Success = 'success',
-  Error = 'error',
-}
 
 export const movies = (state = initialMoviesState, action: any) => {
   switch (action.type) {
