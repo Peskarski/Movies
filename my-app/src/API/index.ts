@@ -20,9 +20,15 @@ export const getMoviesUrl = (
   genre: string,
   startDate: string,
   endDate: string,
-  page: number
+  page: number,
+  region: string,
+  provider: string[]
 ): string =>
-  `${BASE_URL}discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=${genre}&primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}&page=${page}&with_watch_monetization_types=flatrate`;
+  `${BASE_URL}discover/movie?api_key=${
+    process.env.REACT_APP_API_KEY
+  }&language=${language}&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=${genre}&primary_release_date.gte=${startDate}&primary_release_date.lte=${endDate}&page=${page}&with_watch_providers=${provider.join(
+    '|'
+  )}&watch_region=${region}&with_watch_monetization_types=flatrate`;
 
 //details
 export const getMovieDetailsUrl = (language: string, id: number): string =>
@@ -35,6 +41,18 @@ export const getPosterUrl = (path: string): string => `https://image.tmdb.org/t/
 export const getRecomendationsUrl = (language: string, id: number): string =>
   `${BASE_URL}/movie/${id}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&page=1`;
 
+//current country
+export const getCurrentCountryUrl = (): string =>
+  `https://ipgeolocation.abstractapi.com/v1/?api_key=${process.env.REACT_APP_GEO_KEY}`;
+
+//available countries
+export const getAvailableCountriesUrl = (): string =>
+  `https://api.themoviedb.org/3/watch/providers/regions?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`;
+
+//providers
+export const getProvidersUrl = (language: string, country: string) =>
+  `${BASE_URL}watch/providers/movie?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&watch_region=${country}`;
+=======
 //request token
 export const getRequestTokenUrl = (): string =>
   `${BASE_URL}/authentication/token/new?api_key=${process.env.REACT_APP_API_KEY}`;

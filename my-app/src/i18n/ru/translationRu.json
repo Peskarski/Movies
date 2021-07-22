@@ -14,6 +14,7 @@
   },
   "filters": {
     "genre": "Жанр",
+    "providers": "Провайдеры",
     "startDate": "От",
     "endDate": "До",
     "apply": "Применить"

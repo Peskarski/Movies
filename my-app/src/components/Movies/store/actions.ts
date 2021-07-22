@@ -5,6 +5,12 @@ export const GET_FILTERED_MOVIES_SUCCESS = 'GET_FILTERED_MOVIES_SUCCESS';
 export const GET_FILTERED_MOVIES_ERROR = 'GET_FILTERED_MOVIES_ERROR';
 export const GET_FILTERED_MOVIES_REQUESTED = 'GET_FILTERED_MOVIES_REQUESTED';
 export const GET_TOTAL_PAGES = 'GET_TOTAL_PAGES';
+export const GET_CURRENT_COUNTRY_SUCCESS = 'GET_CURRENT_COUNTRY_SUCCESS';
+export const GET_CURRENT_COUNTRY_ERROR = 'GET_CURRENT_COUNTRY_ERROR';
+export const GET_CURRENT_COUNTRY_REQUESTED = 'GET_CURRENT_COUNTRY_REQUESTED';
+export const GET_PROVIDERS_SUCCESS = 'GET_PROVIDERS_SUCCESS';
+export const GET_PROVIDERS_ERROR = 'GET_PROVIDERS_ERROR';
+export const GET_PROVIDERS_REQUESTED = 'GET_PROVIDERS_REQUESTED';
 
 export const getGenresSuccess = (genres: []) => {
   return {
@@ -52,5 +58,47 @@ export const getTotalPages = (totalPages: Number) => {
   return {
     type: GET_TOTAL_PAGES,
     payload: totalPages,
+  };
+};
+
+export const getCurrentCountrySuccess = (countryCode: string) => {
+  return {
+    type: GET_CURRENT_COUNTRY_SUCCESS,
+    payload: countryCode,
+  };
+};
+
+export const getCurrentCountryError = (error: Error) => {
+  return {
+    type: GET_CURRENT_COUNTRY_ERROR,
+    payload: error,
+  };
+};
+
+export const getCurrentCountryRequested = (countryData: {}) => {
+  return {
+    type: GET_CURRENT_COUNTRY_REQUESTED,
+    payload: countryData,
+  };
+};
+
+export const getProvidersSuccess = (providers: []) => {
+  return {
+    type: GET_PROVIDERS_SUCCESS,
+    payload: providers,
+  };
+};
+
+export const getProvidersError = (error: Error) => {
+  return {
+    type: GET_PROVIDERS_ERROR,
+    payload: error,
+  };
+};
+
+export const getProvidersRequested = (url: string) => {
+  return {
+    type: GET_PROVIDERS_REQUESTED,
+    payload: url,
   };
 };
