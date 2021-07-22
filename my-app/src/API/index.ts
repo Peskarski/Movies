@@ -46,3 +46,28 @@ export const getPermissionUrl = (requestToken: string): string =>
 //session token
 export const getSessionIDUrl = (request_token: string): string =>
   `${BASE_URL}authentication/session/new?api_key=${process.env.REACT_APP_API_KEY}&request_token=${request_token}`;
+
+//account lists
+export const getCreatedListsUrl = (language: string, sessionID: string): string =>
+  `${BASE_URL}account/${process.env.REACT_ACCOUNT_ID}/lists?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&session_id=${sessionID}&page=1`;
+
+//create list
+export const getCreateListUrl = (sessionID: string): string =>
+  `${BASE_URL}list?api_key=${process.env.REACT_APP_API_KEY}&session_id=${sessionID}`;
+
+//delete list
+export const deleteListUrl = (sessionID: string, listID: string): string =>
+  `${BASE_URL}list/${listID}?api_key=${process.env.REACT_APP_API_KEY}&session_id=${sessionID}`;
+
+//add movie to the list
+export const getAddMovieToListUrl = (sessionID: string, listID: string): string =>
+  `${BASE_URL}list/${listID}/add_item?api_key=${process.env.REACT_APP_API_KEY}&session_id=${sessionID}`;
+
+// list details
+export const getListDetailsUrl = (listID: string, language: string): string =>
+  `${BASE_URL}list/${listID}?api_key=${process.env.REACT_APP_API_KEY}&language=${language}`;
+
+//remove movie from the list
+
+export const getRemoveMovieFromListUrl = (sessionID: string, listID: string): string =>
+  `${BASE_URL}list/${listID}/remove_item?api_key=${process.env.REACT_APP_API_KEY}&session_id=${sessionID}`;

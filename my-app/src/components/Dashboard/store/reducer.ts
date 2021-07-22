@@ -1,4 +1,5 @@
 import { GET_MOVIES_SUCCESS, GET_MOVIES_REQUESTED, GET_MOVIES_ERROR, SET_INITIAL_MOVIES_STATE } from './actions';
+import { Status } from '../../../store/types';
 
 const moviesList = {
   movies: [],
@@ -11,12 +12,6 @@ export const initialListsState = {
   upcoming: moviesList,
   popular: moviesList,
 };
-
-enum Status {
-  Requested = 'requested',
-  Success = 'success',
-  Error = 'error',
-}
 
 export const lists = (state = initialListsState, action: any) => {
   switch (action.type) {

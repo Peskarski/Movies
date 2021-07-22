@@ -4,6 +4,7 @@ import {
   GET_RANDOM_MOVIE_SUCCESS,
   GET_TOTAL_PAGES,
 } from './actions';
+import { Status } from '../../../store/types';
 
 export const initialRandomMovieState = {
   randomMovie: {
@@ -13,12 +14,6 @@ export const initialRandomMovieState = {
   },
   totalPages: 0,
 };
-
-enum Status {
-  Requested = 'requested',
-  Success = 'success',
-  Error = 'error',
-}
 
 export const random = (state = initialRandomMovieState, action: any) => {
   switch (action.type) {

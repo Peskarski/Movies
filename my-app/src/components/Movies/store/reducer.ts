@@ -7,6 +7,7 @@ import {
   GET_FILTERED_MOVIES_SUCCESS,
   GET_TOTAL_PAGES,
 } from './actions';
+import { Status } from '../../../store/types';
 
 export const initialMoviesState = {
   genres: {
@@ -22,12 +23,6 @@ export const initialMoviesState = {
   },
   totalPages: 0,
 };
-
-enum Status {
-  Requested = 'requested',
-  Success = 'success',
-  Error = 'error',
-}
 
 export const movies = (state = initialMoviesState, action: any) => {
   switch (action.type) {

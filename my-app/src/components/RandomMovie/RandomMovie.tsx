@@ -37,7 +37,7 @@ export const RandomMovie: React.FC = () => {
   return (
     <div>
       <Filters onAplied={applyFilterParams} />
-      <MovieCard title={title} id={id} poster_path={poster_path} />
+      <MovieCard title={title} movieID={id} posterPath={poster_path} />
     </div>
   );
 };

@@ -28,7 +28,9 @@ export const NavBar: React.FC = () => {
 
   return (
     <StyledContainer>
-      <StyledLogInButton onClick={() => history.push(`/login`)}>{t('navBar.logIn')}</StyledLogInButton>
+      {!isUserLoggedIn && (
+        <StyledLogInButton onClick={() => history.push(`/login`)}>{t('navBar.logIn')}</StyledLogInButton>
+      )}
       <StyledAppBar position="static">
         <Tabs
           aria-label="simple tabs example"
@@ -47,6 +49,7 @@ export const NavBar: React.FC = () => {
               onClick={() => history.push(`/${t(tab, { lng: 'en' })}/`)}
             />
           ))}
+          {isUserLoggedIn && <StyledTab label={t('navBar.lists')} onClick={() => history.push(`/lists/`)} />}
         </Tabs>
       </StyledAppBar>
       <ButtonGroup variant="contained" aria-label="contained primary button group">
