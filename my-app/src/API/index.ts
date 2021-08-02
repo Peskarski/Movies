@@ -52,7 +52,7 @@ export const getAvailableCountriesUrl = (): string =>
 //providers
 export const getProvidersUrl = (language: string, country: string) =>
   `${BASE_URL}watch/providers/movie?api_key=${process.env.REACT_APP_API_KEY}&language=${language}&watch_region=${country}`;
-=======
+
 //request token
 export const getRequestTokenUrl = (): string =>
   `${BASE_URL}/authentication/token/new?api_key=${process.env.REACT_APP_API_KEY}`;
